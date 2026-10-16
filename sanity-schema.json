@@ -514,6 +514,341 @@
   },
   {
     "type": "type",
+    "name": "sectionContent.appLink",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "internal"
+              },
+              {
+                "type": "string",
+                "value": "external"
+              },
+              {
+                "type": "string",
+                "value": "email"
+              },
+              {
+                "type": "string",
+                "value": "phone"
+              },
+              {
+                "type": "string",
+                "value": "file"
+              },
+              {
+                "type": "string",
+                "value": "params"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "external": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "email": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "phone": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "file": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "file1"
+          },
+          "optional": true
+        },
+        "canDownload": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "paramsHref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "internal": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "internal1"
+          },
+          "optional": true
+        },
+        "customText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "openInNewTab": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "sectionContent.appMedia",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "image"
+              },
+              {
+                "type": "string",
+                "value": "videoMux"
+              },
+              {
+                "type": "string",
+                "value": "videoFile"
+              },
+              {
+                "type": "string",
+                "value": "videoUrl"
+              },
+              {
+                "type": "string",
+                "value": "rive"
+              },
+              {
+                "type": "string",
+                "value": "lottie"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "videoFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "videoFile1"
+          },
+          "optional": true
+        },
+        "videoUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "image": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "appMedia.image1"
+          },
+          "optional": true
+        },
+        "video": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "mux.video"
+          },
+          "optional": true
+        },
+        "videoCover": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "videoCover1"
+          },
+          "optional": true
+        },
+        "animatedThumbnail": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "animatedThumbnail1"
+          },
+          "optional": true
+        },
+        "riveFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "riveFile1"
+          },
+          "optional": true
+        },
+        "riveDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "riveDimensions1"
+          },
+          "optional": true
+        },
+        "lottieFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "lottieFile1"
+          },
+          "optional": true
+        },
+        "lottieDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "lottieDimensions1"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "capabilitiesSectionField.sectionContent.appLink",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "internal"
+              },
+              {
+                "type": "string",
+                "value": "external"
+              },
+              {
+                "type": "string",
+                "value": "email"
+              },
+              {
+                "type": "string",
+                "value": "phone"
+              },
+              {
+                "type": "string",
+                "value": "file"
+              },
+              {
+                "type": "string",
+                "value": "params"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "external": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "email": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "phone": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "file": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "appLink.file1"
+          },
+          "optional": true
+        },
+        "canDownload": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "paramsHref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "internal": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "appLink.internal1"
+          },
+          "optional": true
+        },
+        "customText": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "openInNewTab": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
     "name": "mediaBlock.appMedia",
     "value": {
       "type": "object",
@@ -1687,6 +2022,1461 @@
           "type": "objectAttribute",
           "value": {
             "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "file1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "appLink.file.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "internal1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "link": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "inline",
+                "name": "page.reference"
+              },
+              {
+                "type": "inline",
+                "name": "legalPage.reference"
+              },
+              {
+                "type": "inline",
+                "name": "article.reference"
+              },
+              {
+                "type": "inline",
+                "name": "blog.reference"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionTarget": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "videoFile1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "media1"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "appMedia.image1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "image.media1"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "videoCover1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "videoCover.media1"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "animatedThumbnail1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "start": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "end": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "riveFile1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "riveFile.media1"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "riveDimensions1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "lottieFile1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "lottieFile.media1"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "lottieDimensions1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "appLink.file1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "file.media1"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "appLink.internal1",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "link": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "inline",
+                "name": "page.reference"
+              },
+              {
+                "type": "inline",
+                "name": "legalPage.reference"
+              },
+              {
+                "type": "inline",
+                "name": "article.reference"
+              },
+              {
+                "type": "inline",
+                "name": "blog.reference"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "sectionTarget": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "image"
+              },
+              {
+                "type": "string",
+                "value": "videoMux"
+              },
+              {
+                "type": "string",
+                "value": "videoFile"
+              },
+              {
+                "type": "string",
+                "value": "videoUrl"
+              },
+              {
+                "type": "string",
+                "value": "rive"
+              },
+              {
+                "type": "string",
+                "value": "lottie"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "videoFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.videoFile"
+          },
+          "optional": true
+        },
+        "videoUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "image": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.image"
+          },
+          "optional": true
+        },
+        "video": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "mux.video"
+          },
+          "optional": true
+        },
+        "videoCover": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.videoCover"
+          },
+          "optional": true
+        },
+        "animatedThumbnail": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.animatedThumbnail"
+          },
+          "optional": true
+        },
+        "riveFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.riveFile"
+          },
+          "optional": true
+        },
+        "riveDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.riveDimensions"
+          },
+          "optional": true
+        },
+        "lottieFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.lottieFile"
+          },
+          "optional": true
+        },
+        "lottieDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.lottieDimensions"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.videoFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.videoFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.image",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.image.media"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.videoCover",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.videoCover.media"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.animatedThumbnail",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "start": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "end": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.riveFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.riveFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.riveDimensions",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.lottieFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "processStage.media.lottieFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "processStage.media.lottieDimensions",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "image"
+              },
+              {
+                "type": "string",
+                "value": "videoMux"
+              },
+              {
+                "type": "string",
+                "value": "videoFile"
+              },
+              {
+                "type": "string",
+                "value": "videoUrl"
+              },
+              {
+                "type": "string",
+                "value": "rive"
+              },
+              {
+                "type": "string",
+                "value": "lottie"
+              }
+            ]
+          },
+          "optional": true
+        },
+        "videoFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.videoFile"
+          },
+          "optional": true
+        },
+        "videoUrl": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "image": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.image"
+          },
+          "optional": true
+        },
+        "video": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "mux.video"
+          },
+          "optional": true
+        },
+        "videoCover": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.videoCover"
+          },
+          "optional": true
+        },
+        "animatedThumbnail": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.animatedThumbnail"
+          },
+          "optional": true
+        },
+        "riveFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.riveFile"
+          },
+          "optional": true
+        },
+        "riveDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.riveDimensions"
+          },
+          "optional": true
+        },
+        "lottieFile": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.lottieFile"
+          },
+          "optional": true
+        },
+        "lottieDimensions": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.lottieDimensions"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.videoFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.videoFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.image",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.image.media"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.videoCover",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.videoCover.media"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.animatedThumbnail",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
+        "start": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "end": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.riveFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.riveFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.riveDimensions",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.lottieFile",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.fileAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "secondaryMedia.lottieFile.media"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "file"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "secondaryMedia.lottieDimensions",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "width": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        },
+        "height": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "number"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "processSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "processSection"
+          }
+        },
+        "eyebrow": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "headline": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "lead": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "stages": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "eyebrow": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "headline": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "text": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "items": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "array",
+                    "of": {
+                      "type": "string"
+                    }
+                  },
+                  "optional": true
+                },
+                "layout": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "union",
+                    "of": [
+                      {
+                        "type": "string",
+                        "value": "split"
+                      },
+                      {
+                        "type": "string",
+                        "value": "gallery"
+                      },
+                      {
+                        "type": "string",
+                        "value": "centered"
+                      }
+                    ]
+                  },
+                  "optional": true
+                },
+                "media": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "inline",
+                    "name": "processStage.media"
+                  },
+                  "optional": true
+                },
+                "secondaryMedia": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "inline",
+                    "name": "secondaryMedia"
+                  },
+                  "optional": true
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "processStage"
+                  }
+                }
+              },
+              "rest": {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "capabilitiesSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "capabilitiesSection"
+          }
+        },
+        "eyebrow": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "headline": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "lead": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "items": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "array",
+            "of": {
+              "type": "object",
+              "attributes": {
+                "title": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "description": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string"
+                  },
+                  "optional": true
+                },
+                "_type": {
+                  "type": "objectAttribute",
+                  "value": {
+                    "type": "string",
+                    "value": "capability"
+                  }
+                }
+              },
+              "rest": {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "optional": true
+        },
+        "appLink": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "capabilitiesSectionField.sectionContent.appLink"
+          },
+          "optional": true
+        }
+      }
+    }
+  },
+  {
+    "name": "heroSection",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "heroSection"
+          }
+        },
+        "headline": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "appLink": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sectionContent.appLink"
+          },
+          "optional": true
+        },
+        "appMedia": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sectionContent.appMedia"
           },
           "optional": true
         }
@@ -4702,6 +6492,169 @@
                 }
               },
               "optional": true
+            },
+            "cta": {
+              "type": "objectAttribute",
+              "value": {
+                "type": "object",
+                "attributes": {
+                  "type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "union",
+                      "of": [
+                        {
+                          "type": "string",
+                          "value": "internal"
+                        },
+                        {
+                          "type": "string",
+                          "value": "external"
+                        },
+                        {
+                          "type": "string",
+                          "value": "email"
+                        },
+                        {
+                          "type": "string",
+                          "value": "phone"
+                        },
+                        {
+                          "type": "string",
+                          "value": "file"
+                        },
+                        {
+                          "type": "string",
+                          "value": "params"
+                        }
+                      ]
+                    },
+                    "optional": true
+                  },
+                  "external": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "email": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "phone": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "file": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "asset": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "sanity.fileAsset.reference"
+                          },
+                          "optional": true
+                        },
+                        "media": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "unknown"
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "file"
+                          }
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "canDownload": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  },
+                  "paramsHref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "internal": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "object",
+                      "attributes": {
+                        "link": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "union",
+                            "of": [
+                              {
+                                "type": "inline",
+                                "name": "page.reference"
+                              },
+                              {
+                                "type": "inline",
+                                "name": "legalPage.reference"
+                              },
+                              {
+                                "type": "inline",
+                                "name": "article.reference"
+                              },
+                              {
+                                "type": "inline",
+                                "name": "blog.reference"
+                              }
+                            ]
+                          },
+                          "optional": true
+                        },
+                        "sectionTarget": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string"
+                          },
+                          "optional": true
+                        }
+                      }
+                    },
+                    "optional": true
+                  },
+                  "customText": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    },
+                    "optional": true
+                  },
+                  "openInNewTab": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                }
+              },
+              "optional": true
             }
           }
         },
@@ -5647,6 +7600,123 @@
                           }
                         }
                       }
+                    },
+                    {
+                      "type": "object",
+                      "attributes": {
+                        "sectionSettings": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "sectionSettings"
+                          },
+                          "optional": true
+                        },
+                        "sectionContent": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "heroSection"
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "heroSectionField"
+                          }
+                        }
+                      },
+                      "rest": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "attributes": {
+                        "sectionSettings": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "sectionSettings"
+                          },
+                          "optional": true
+                        },
+                        "sectionContent": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "capabilitiesSection"
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "capabilitiesSectionField"
+                          }
+                        }
+                      },
+                      "rest": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "attributes": {
+                        "sectionSettings": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "sectionSettings"
+                          },
+                          "optional": true
+                        },
+                        "sectionContent": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "inline",
+                            "name": "processSection"
+                          },
+                          "optional": true
+                        },
+                        "_type": {
+                          "type": "objectAttribute",
+                          "value": {
+                            "type": "string",
+                            "value": "processSectionField"
+                          }
+                        }
+                      },
+                      "rest": {
+                        "type": "object",
+                        "attributes": {
+                          "_key": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
                     }
                   ]
                 }
@@ -5770,6 +7840,60 @@
           }
         },
         "optional": true
+      }
+    }
+  },
+  {
+    "type": "type",
+    "name": "mux.videoAsset.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "mux.videoAsset"
+    }
+  },
+  {
+    "name": "mux.video",
+    "type": "type",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "mux.video"
+          }
+        },
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "mux.videoAsset.reference"
+          },
+          "optional": true
+        }
       }
     }
   },
@@ -8422,60 +10546,6 @@
           }
         },
         "optional": true
-      }
-    }
-  },
-  {
-    "type": "type",
-    "name": "mux.videoAsset.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "mux.videoAsset"
-    }
-  },
-  {
-    "name": "mux.video",
-    "type": "type",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "mux.video"
-          }
-        },
-        "asset": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "mux.videoAsset.reference"
-          },
-          "optional": true
-        }
       }
     }
   },

@@ -118,6 +118,11 @@ export const site = defineType({
           validation: (R) => R.required().min(1),
           of: [createLinkField({ title: "Link", validation: (R) => R.required() })],
         }),
+        createLinkField({
+          name: "cta",
+          title: "Contact button",
+          description: "The frosted button at the right of the header, e.g. Contact.",
+        }),
       ],
     }),
     defineField({

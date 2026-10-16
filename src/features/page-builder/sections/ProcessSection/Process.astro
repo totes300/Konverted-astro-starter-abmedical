@@ -1,0 +1,54 @@
+---
+import Eyebrow from "~/components/Eyebrow.astro";
+import SectionFrame from "~/features/page-builder/SectionFrame.astro";
+import type { SectionLayoutSettings } from "~/features/page-builder/section-layout";
+import type { MediaFragmentResult } from "~/features/sanity/media/fragment";
+import { cx } from "~/features/style/utils";
+import ProcessStage from "./ProcessStage.astro";
+
+// "How we work": one white ground holding the centred intro and every numbered stage, so the steps read as one sequence.
+// The spacing is Figma's spacers: 220 down from the dark section above, 96 to the first stage, 196 between stages.
+type Stage = {
+  key: string;
+  eyebrow?: string | null;
+  headline?: string | null;
+  text?: string | null;
+  items?: string[] | null;
+  layout?: "split" | "gallery" | "centered" | null;
+  media?: MediaFragmentResult | null;
+  secondaryMedia?: MediaFragmentResult | null;
+};
+
+type Props = {
+  eyebrow?: string | null;
+  headline?: string | null;
+  lead?: string | null;
+  stages?: Stage[] | null;
+  settings?: SectionLayoutSettings | null;
+  id?: string;
+  class?: string;
+  [key: `data-${string}`]: string | undefined;
+};
+
+const { eyebrow, headline, lead, stages, settings, id, class: className, ...data } = Astro.props;
+---
+
+<SectionFrame
+  settings={settings}
+  flush
+  id={id}
+  class={cx('bg-white pt-120 pb-96 text-black-01 lg:pt-220 lg:pb-164', className)}
+  {...data}
+>
+  <div class="mx-auto flex w-full max-w-(--page-width) flex-col gap-64 lg:gap-96">
+    <header class="mx-auto flex max-w-862 flex-col items-center gap-36 text-center">
+      {eyebrow && <Eyebrow label={eyebrow} />}
+      <h2 class="text-balance text-display">{headline}</h2>
+      {lead && <p class="max-w-704 text-body-lg">{lead}</p>}
+    </header>
+
+    <div class="flex flex-col gap-120 lg:gap-196">
+      {(stages ?? []).map((stage, index) => <ProcessStage {...stage} number={index + 1} />)}
+    </div>
+  </div>
+</SectionFrame>

@@ -42,17 +42,13 @@
 
 /* The shell's measurements: the header's height, plus the content column's width and side margin.
    Kept together on `:root` rather than split into `@theme` so the three read as one definition and
-   share one consumption syntax, and because two of them change at `lg`, which a `:root` declaration
+   share one consumption syntax, and because the gutter changes at `lg`, which a `:root` declaration
    states directly. */
 @layer base {
   :root {
-    /* The site header's full height, as `h-(--header-height)`. Page chrome that has to clear the
-       header measures it with `top-(--header-height)` or `scroll-mt-(--header-height)`. */
-    --header-height: --spacing(72);
-
-    @variant lg {
-      --header-height: --spacing(120);
-    }
+    /* The site header's full height, as `h-(--header-height)`. The header overlays the page, so the shell
+       offsets `main` by it, and chrome that has to clear it reads `top-(--header-height)` or `scroll-mt-(--header-height)`. */
+    --header-height: --spacing(68);
 
     /* The content column's width, as `max-w-(--page-width)`. Distinct from `--layout-max-w`, which
        is only the upper bound the fluid type scales interpolate to. */

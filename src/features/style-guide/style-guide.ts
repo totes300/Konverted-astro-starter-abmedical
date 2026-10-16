@@ -5,7 +5,7 @@ export const FIGMA_FILE_URL = "https://www.figma.com/design/P80tAiuATYXWjcZcz3Tt
 
 export const figmaNodeUrl = (nodeId: string) => `${FIGMA_FILE_URL}?node-id=${nodeId.replace(":", "-")}`;
 
-export type SectionRef = "S1" | "S2" | "S3" | "S4";
+export type SectionRef = "S1" | "S2" | "S3" | "S4" | "S5" | "S6";
 
 export type BuiltSection = {
   ref: SectionRef;
@@ -15,6 +15,9 @@ export type BuiltSection = {
   ground: "dark" | "light";
   summary: string;
   uses: string[];
+  /** `built` once the section renders on the site; `designed` while it exists only in Figma. */
+  status: "built" | "designed";
+  component?: string;
 };
 
 export const BUILT_SECTIONS: BuiltSection[] = [
@@ -24,8 +27,20 @@ export const BUILT_SECTIONS: BuiltSection[] = [
     figmaName: "Hero/3",
     nodeId: "13625:62062",
     ground: "dark",
-    summary: "Full-bleed lab photograph with a hairline grid, nav bar, display headline and a Learn more CTA.",
-    uses: ["text-display", "text-button", "text-button-sm", "bg-hero-fade", "Button glass", "Button arrow", "hairline/dark"],
+    summary:
+      "Full-bleed lab photograph under the overlaid site header, a hairline grid, the display headline (the page's H1) and a Learn more CTA. Plays the GSAP intro on load.",
+    uses: [
+      "text-display",
+      "text-button",
+      "text-button-sm",
+      "bg-hero-fade",
+      "Button glass",
+      "Button arrow",
+      "hairline/dark",
+      "Motion: hero intro",
+    ],
+    status: "built",
+    component: "page-builder/sections/HeroSection",
   },
   {
     ref: "S2",
@@ -33,26 +48,69 @@ export const BUILT_SECTIONS: BuiltSection[] = [
     figmaName: "Ints bucsut/2",
     nodeId: "13625:62084",
     ground: "dark",
-    summary: "Navy-glow ground with the blurred logo mark, an H3 statement, lead copy and a three-column capability row.",
-    uses: ["text-heading-3", "text-body-xl", "text-body-lg (500)", "text-body", "Eyebrow dark", "bg-navy-glow", "logo mark"],
+    summary:
+      "Built as direction 2: the hero's hairline grid carried on. Four columns, the last starting on the hero's divider; H1-size headline across three, intro in the fourth, numbered capabilities in a ruled row, the tilted emblem pulling into focus behind.",
+    uses: [
+      "text-heading-1",
+      "text-body-lg",
+      "text-body-lg (500)",
+      "text-body",
+      "Eyebrow dark",
+      "bg-navy-glow",
+      "Emblem",
+      "hairline/dark",
+      "Button arrow",
+      "Motion: emblem pull",
+    ],
+    status: "built",
+    component: "page-builder/sections/CapabilitiesSection",
   },
   {
     ref: "S3",
-    name: "Centered statement",
+    name: "How we work: intro",
     figmaName: "Cim",
     nodeId: "13625:62199",
     ground: "light",
-    summary: "Centered eyebrow, display headline and a 704px lead paragraph.",
+    summary:
+      "Opens the How we work section (one Sanity item with S4–S6): centred eyebrow, display headline and a 704px lead on the white ground, 220px below the dark section above.",
     uses: ["text-display", "text-body-lg", "Eyebrow light"],
+    status: "built",
+    component: "page-builder/sections/ProcessSection",
   },
   {
     ref: "S4",
-    name: "Service split",
+    name: "How we work: stage 01, split",
     figmaName: "section",
     nodeId: "13625:62207",
     ground: "light",
-    summary: "Copy column with an H3, lead and a hairline check list beside a 640px rounded photo card.",
+    summary:
+      "Stage layout `split`: numbered eyebrow, H3, lead and a hairline check list beside a 4:5 photo card. Two columns from md.",
     uses: ["text-heading-3", "text-body-lg", "text-body", "Eyebrow light", "CheckList", "rounded-16"],
+    status: "built",
+    component: "page-builder/sections/ProcessSection",
+  },
+  {
+    ref: "S5",
+    name: "How we work: stage 02, gallery",
+    figmaName: "section",
+    nodeId: "13625:62250",
+    ground: "light",
+    summary:
+      "Stage layout `gallery`: copy beside the check list, then a wide and a narrow photo card on the same 823 / 505 columns.",
+    uses: ["text-heading-3", "text-body-lg", "Eyebrow light", "CheckList", "rounded-16", "bg-black-01/10"],
+    status: "built",
+    component: "page-builder/sections/ProcessSection",
+  },
+  {
+    ref: "S6",
+    name: "How we work: stage 03, centered",
+    figmaName: "section",
+    nodeId: "13625:62288",
+    ground: "light",
+    summary: "Stage layout `centered`: centred copy, then half the list, a tall photo, and a second photo above the other half.",
+    uses: ["text-heading-3", "text-body-lg", "Eyebrow light", "CheckList", "rounded-16", "bg-black-01/10"],
+    status: "built",
+    component: "page-builder/sections/ProcessSection",
   },
 ];
 
@@ -81,7 +139,7 @@ export const COLOR_GROUPS: SwatchGroup[] = [
         hex: "#1D1D1D",
         figma: "black-01 · Text/primary",
         usage: "Primary text on light grounds, check-circle icon.",
-        usedIn: ["S3", "S4"],
+        usedIn: ["S3", "S4", "S5", "S6"],
         dark: true,
       },
       {
@@ -111,7 +169,7 @@ export const COLOR_GROUPS: SwatchGroup[] = [
         hex: "#FFFFFF",
         figma: "white-100 · Text/alternate",
         usage: "Text on dark grounds, the CTA arrow tile, light section ground.",
-        usedIn: ["S1", "S2", "S3", "S4"],
+        usedIn: ["S1", "S2", "S3", "S4", "S5", "S6"],
       },
       {
         name: "Beige 01",
@@ -154,7 +212,7 @@ export const COLOR_GROUPS: SwatchGroup[] = [
         hex: "#547ADE",
         figma: "(raw value, unnamed in Figma)",
         usage: "Eyebrow marker on light grounds.",
-        usedIn: ["S3", "S4"],
+        usedIn: ["S3", "S4", "S5", "S6"],
         dark: true,
       },
       {
@@ -190,7 +248,7 @@ export const COLOR_GROUPS: SwatchGroup[] = [
         hex: "#1D1D1D",
         figma: "Text/primary",
         usage: "Headlines and body on light grounds.",
-        usedIn: ["S3", "S4"],
+        usedIn: ["S3", "S4", "S5", "S6"],
         dark: true,
       },
       {
@@ -336,7 +394,7 @@ export const TYPE_SCALE: TypeStyle[] = [
     lineHeight: "120%",
     tracking: "0",
     sample: "Complete Product Development",
-    usedIn: ["S2", "S4"],
+    usedIn: ["S2", "S4", "S5", "S6"],
   },
   {
     name: "Heading 4",
@@ -375,7 +433,7 @@ export const TYPE_SCALE: TypeStyle[] = [
     lineHeight: "140%",
     tracking: "0",
     sample: "Concept through production-ready design, with FDA-aligned design controls.",
-    usedIn: ["S3", "S4"],
+    usedIn: ["S3", "S4", "S5", "S6"],
   },
   {
     name: "Body LG Medium",
@@ -401,7 +459,7 @@ export const TYPE_SCALE: TypeStyle[] = [
     lineHeight: "150%",
     tracking: "0",
     sample: "Mechanical and electromechanical engineering",
-    usedIn: ["S2", "S4"],
+    usedIn: ["S2", "S4", "S5", "S6"],
   },
   {
     name: "Body Medium (nav)",
@@ -415,7 +473,6 @@ export const TYPE_SCALE: TypeStyle[] = [
     tracking: "0",
     sample: "Services · Industries · About",
     usedIn: ["S1"],
-    note: "Figma sets the hero nav in DeLonghi Sans Medium (and one link in Light). Substituted with PP Neue Montreal Medium until confirmed.",
   },
   {
     name: "Body SM",
@@ -441,7 +498,7 @@ export const TYPE_SCALE: TypeStyle[] = [
     lineHeight: "100%",
     tracking: "8%",
     sample: "All-in-one",
-    usedIn: ["S2", "S3", "S4"],
+    usedIn: ["S2", "S3", "S4", "S5", "S6"],
   },
   {
     name: "Button",
@@ -494,8 +551,10 @@ export type RhythmStep = { value: number; heightClass: string; usage: string };
 
 export const SECTION_RHYTHM: RhythmStep[] = [
   { value: 0, heightClass: "h-0", usage: "S1 → S2: dark sections stack flush" },
-  { value: 96, heightClass: "h-96", usage: "S3 → S4: light section to light section" },
-  { value: 220, heightClass: "h-220", usage: "S2 → S3: dark to light (Figma stacks a 96 and a 124 spacer)" },
+  { value: 96, heightClass: "h-96", usage: "How we work: intro → first stage" },
+  { value: 164, heightClass: "h-164", usage: "How we work → the section after it" },
+  { value: 196, heightClass: "h-196", usage: "How we work: stage → stage" },
+  { value: 220, heightClass: "h-220", usage: "Dark section → How we work intro (Figma stacks a 96 and a 124 spacer)" },
 ];
 
 export type Radius = { token: string; boxClass: string; value: string; usage: string };
@@ -506,9 +565,76 @@ export const RADII: Radius[] = [
   { token: "rounded-16", boxClass: "rounded-16", value: "16px", usage: "Photo cards" },
 ];
 
+export type MotionStep = { target: string; property: string; from: string; duration: string; delay: string; ease: string };
+
+/** The hero's page-load intro (`HeroSection/HeroElement.ts`), times in seconds from the start of the timeline. */
+export const HERO_INTRO: MotionStep[] = [
+  {
+    target: "Horizontal hairlines",
+    property: "scaleX",
+    from: "0 → 1",
+    duration: "1.4s",
+    delay: "0, +0.12 each",
+    ease: "power3.inOut",
+  },
+  { target: "Vertical divider", property: "scaleY", from: "0 → 1", duration: "1.1s", delay: "0.45", ease: "power3.inOut" },
+  {
+    target: "Headline lines (SplitText, masked)",
+    property: "yPercent",
+    from: "110 → 0",
+    duration: "1.2s",
+    delay: "0.5, +0.12 each",
+    ease: "reveal",
+  },
+  { target: "CTA (masked)", property: "yPercent", from: "110 → 0", duration: "1.0s", delay: "0.85", ease: "reveal" },
+];
+
+/** The emblem behind dark sections (`src/components/Emblem/EmblemElement.ts`), mapped on native scroll over its pass across the screen. */
+export const EMBLEM_MOTION: MotionStep[] = [
+  {
+    target: "Focus copy (blur 16) over the soft copy (blur 50)",
+    property: "opacity",
+    from: "0 → 0.75 → 0",
+    duration: "scroll",
+    delay: "peaks mid-screen",
+    ease: "smoothstep",
+  },
+  { target: "Emblem", property: "translateY", from: "28 → −28 px", duration: "scroll", delay: "whole pass", ease: "linear" },
+  { target: "Emblem", property: "rotate", from: "−1.5° → 1.5°", duration: "scroll", delay: "whole pass", ease: "linear" },
+];
+
 export type ChangelogEntry = { version: string; date: string; changes: string[] };
 
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    version: "0.4",
+    date: "2026-10-16",
+    changes: [
+      "S3–S6 built as one processSection (How we work): the centred intro and three numbered stages on one white ground, editable as a single Sanity item.",
+      "Stage layouts: split, gallery and centered, picked per stage; every stage shares the numbered eyebrow (01 / Design & Development) that matches S2's numbers.",
+      "Rhythm: 220 above the intro, 96 to the first stage, 196 between stages, 164 below; split stages go two-column from md.",
+    ],
+  },
+  {
+    version: "0.3",
+    date: "2026-10-16",
+    changes: [
+      "S2 built as the capabilitiesSection: direction 2 (hero grid continued), chosen from the explorations canvas.",
+      "Emblem: the tilted AB emblem replaces the flattened mark, as a soft and a focus copy; the Emblem component pulls it toward focus and drifts it on scroll (opacity and transform only).",
+      "Rhythm: sections now own the space between them. SectionFrame adds a 40/60px margin by default (the old 80/120 gap, halved per side); dark sections pass flush to join (S1 → S2).",
+      "Capabilities headlines keep the editor's line break from lg up and wrap naturally on phones.",
+    ],
+  },
+  {
+    version: "0.2",
+    date: "2026-10-16",
+    changes: [
+      "S1 Hero built: the heroSection page builder section (headline, button, background media) is the homepage's only section.",
+      "Site header rebuilt to the design: overlays the page, logo, Body Medium beige-01 links, frosted Contact button (new Site → Header field).",
+      "Motion: the GSAP hero intro (hairlines draw, headline lines rise from SplitText masks, CTA follows).",
+      "Layout: --header-height is 68px at every width; the header and hero run full width on the page gutter.",
+    ],
+  },
   {
     version: "0.1",
     date: "2026-10-16",

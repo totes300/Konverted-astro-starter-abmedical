@@ -1,0 +1,23 @@
+---
+import type { MediaFragmentResult } from "~/features/sanity/media/fragment";
+import { cx } from "~/features/style/utils";
+import SanityMedia from "../../../../sanity/media/SanityMedia.astro";
+
+// A rounded photo card that fills whatever box the stage layout gives it; the photo crops to cover.
+type Props = {
+  media?: MediaFragmentResult | null;
+  class?: string;
+};
+
+const { media, class: className } = Astro.props;
+---
+
+<div class={cx('relative overflow-hidden rounded-16 bg-black-01/10', className)}>
+  {
+    media && (
+      <div class="absolute inset-0">
+        <SanityMedia media={media} class="size-full object-cover" />
+      </div>
+    )
+  }
+</div>

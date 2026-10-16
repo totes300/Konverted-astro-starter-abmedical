@@ -3,20 +3,22 @@ import { type SectionLayoutSettings, sectionLayout } from "~/features/page-build
 import { cx } from "~/features/style/utils";
 
 // The root every page builder section renders: capped to the content column, or full bleed when the
-// editor's settings say so. `as` names the section to a parser.
+// editor's settings say so. `as` names the section to a parser. It also carries the default rhythm between sections.
 type Props = {
   /** A section is a `section`. One with no heading of its own is not part of the outline, so it stays generic. */
   as?: "section" | "div" | "article" | "aside" | "figure" | "nav";
   /** The section's own `sectionSettings` slice, straight from its query. */
   settings?: SectionLayoutSettings | null;
+  /** Drops the default margin, so the section sits directly against its neighbours (dark sections stacked in Figma). */
+  flush?: boolean;
   id?: string;
   class?: string;
   [key: `data-${string}`]: string | undefined;
 };
 
-const { as: Tag = "section", settings, id, class: className, ...data } = Astro.props;
+const { as: Tag = "section", settings, flush = false, id, class: className, ...data } = Astro.props;
 ---
 
-<Tag id={id} class={cx(sectionLayout(settings), className)} {...data}>
+<Tag id={id} class={cx(!flush && 'my-40 lg:my-60', sectionLayout(settings), className)} {...data}>
   <slot />
 </Tag>

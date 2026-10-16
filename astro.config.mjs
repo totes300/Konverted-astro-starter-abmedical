@@ -170,6 +170,10 @@ export default defineConfig({
         "@sanity/visual-editing/react",
         // Pinned: only non-draft pages render the element, so losing the chunk 504s LenisElement after exiting draft preview.
         "lenis",
+        // Reached only through HeroElement.ts, which the scan misses: discovered on the first homepage load, it 504s /studio.
+        "gsap",
+        "gsap/SplitText",
+        "gsap/CustomEase",
       ],
     },
   },

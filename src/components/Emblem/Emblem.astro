@@ -1,0 +1,32 @@
+---
+import { cx } from "~/features/style/utils";
+
+// The blurred, tilted AB emblem behind a dark section. As it crosses the screen it pulls toward focus and drifts,
+// a cross-fade between two pre-blurred copies, so only opacity and transform ever change. The caller places and sizes it.
+type Props = {
+  class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<emblem-drift aria-hidden="true" class={cx('pointer-events-none absolute block will-change-transform', className)}>
+  <img src="/brand/emblem-soft.svg" alt="" width="710" height="500" loading="lazy" decoding="async" class="block h-auto w-full" />
+  <img
+    data-emblem-focus
+    src="/brand/emblem-focus.svg"
+    alt=""
+    width="710"
+    height="500"
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 size-full opacity-0 will-change-[opacity]"
+  />
+</emblem-drift>
+
+<script>
+  import { lazyCustomElement } from "~/lib/lazy-hydrate";
+
+  // Nothing to do until the emblem nears the viewport, so its module stays out of the initial load.
+  lazyCustomElement("emblem-drift", () => import("./EmblemElement"));
+</script>

@@ -9,8 +9,10 @@ import {
   BUILT_SECTIONS,
   CHANGELOG,
   COLOR_GROUPS,
+  EMBLEM_MOTION,
   FIGMA_FILE_URL,
   figmaNodeUrl,
+  HERO_INTRO,
   RADII,
   SECTION_RHYTHM,
   SPACE_SCALE,
@@ -26,6 +28,7 @@ const chapters = [
   { id: "shape", title: "Radii, borders & effects" },
   { id: "primitives", title: "Primitives" },
   { id: "decoration", title: "Decoration" },
+  { id: "motion", title: "Motion" },
   { id: "imagery", title: "Imagery & illustration" },
   { id: "sections", title: "Sections built" },
   { id: "changelog", title: "Changelog" },
@@ -33,9 +36,24 @@ const chapters = [
 
 const latest = CHANGELOG[0];
 const sectionCount = BUILT_SECTIONS.length;
+const builtCount = BUILT_SECTIONS.filter((section) => section.status === "built").length;
 const chip = "rounded-full border border-black-01/15 px-8 py-4 font-label text-black-01/75 text-body-sm";
 const codeClass = "font-mono text-black-01 text-body-sm";
 const panel = "relative isolate flex min-h-200 items-center justify-center overflow-hidden rounded-16 p-32";
+const motionSpecs = [
+  {
+    title: "Hero intro",
+    description:
+      "GSAP, once on page load, after fonts and the page transition. Lines rise from SplitText masks; the masks are removed when the timeline completes.",
+    steps: HERO_INTRO,
+  },
+  {
+    title: "Emblem pull",
+    description:
+      "Native scroll, no library: the emblem's pass across the screen is measured once per layout. A cross-fade between two pre-blurred copies reads as a focus pull, so only opacity and transform change.",
+    steps: EMBLEM_MOTION,
+  },
+];
 const checkItems = [
   "Mechanical and electromechanical engineering",
   "Concept design and product architecture",
@@ -47,13 +65,7 @@ const checkItems = [
   <main class="w-full">
     <div class="min-h-full bg-white text-black-01">
       <header class="relative isolate overflow-hidden bg-navy-glow text-white">
-        <img
-          src="/brand/logo-mark-blurred.svg"
-          alt=""
-          width="550"
-          height="555"
-          class="-z-1 -left-120 absolute top-40 w-440 -skew-x-20 rotate-38 scale-y-94 opacity-80"
-        />
+        <img src="/brand/emblem-soft.svg" alt="" width="710" height="500" class="-z-1 -left-150 absolute top-60 w-710 opacity-90" />
         <div class="mx-auto flex w-full max-w-(--page-width) flex-col gap-64 px-(--page-gutter) pt-32 pb-64">
           <div class="flex items-center justify-between border-white/25 border-b pb-16">
             <img src="/brand/ab-medical-logo-white.png" alt="AB Medical Technologies" width="1024" height="273" class="h-40 w-auto" />
@@ -80,7 +92,7 @@ const checkItems = [
             </div>
             <div class="flex flex-col gap-8">
               <dt class="font-label text-label text-white/50 uppercase">Covers</dt>
-              <dd class="text-body-lg">Figma sections 1–{sectionCount}</dd>
+              <dd class="text-body-lg">Sections 1–{sectionCount} · {builtCount} built</dd>
             </div>
             <div class="flex flex-col gap-8">
               <dt class="font-label text-label text-white/50 uppercase">Design frame</dt>
@@ -222,27 +234,20 @@ const checkItems = [
                     </div>
                   </div>
                 </article>
-                <div class="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-1">
-                  <article class="flex flex-col gap-16 rounded-16 border border-black-01/15 p-24">
-                    <div class="flex items-start justify-between gap-16">
-                      <div class="flex flex-col gap-4">
-                        <h3 class="text-heading-4">Azeret Mono</h3>
-                        <p class="text-black-01/50 text-body">Google Fonts · 400 only</p>
-                      </div>
-                      <code class={codeClass}>font-label</code>
+                <article class="flex flex-col gap-24 rounded-16 border border-black-01/15 p-24">
+                  <div class="flex items-start justify-between gap-16">
+                    <div class="flex flex-col gap-4">
+                      <h3 class="text-heading-4">Azeret Mono</h3>
+                      <p class="text-black-01/50 text-body">Google Fonts · 400 only</p>
                     </div>
-                    <p class="font-label text-heading-3">Aa</p>
-                    <p class="font-label text-label uppercase">Design &amp; Development</p>
-                  </article>
-                  <article class="flex flex-col gap-8 rounded-16 border border-black-01/25 border-dashed p-24">
-                    <span class="font-label text-black-01/50 text-label uppercase">Substituted</span>
-                    <h3 class="font-medium text-body-lg">DeLonghi Sans</h3>
-                    <p class="text-black-01/75 text-body">
-                      Figma sets the hero nav links in DeLonghi Sans, De'Longhi's corporate face. It is not licensed for this brand, so the nav uses PP
-                      Neue Montreal Medium at the same size. Confirm with design.
-                    </p>
-                  </article>
-                </div>
+                    <code class={codeClass}>font-label</code>
+                  </div>
+                  <p class="font-label text-[clamp(6rem,14vw,11.25rem)] leading-none">Aa</p>
+                  <div class="flex flex-col gap-4 border-black-01/15 border-t pt-16">
+                    <span class="font-label text-black-01/50 text-label uppercase">Regular 400 · labels only</span>
+                    <span class="font-label text-label uppercase">Design &amp; Development</span>
+                  </div>
+                </article>
               </div>
 
               <div>
@@ -292,7 +297,7 @@ const checkItems = [
           <GuideSection id="spacing" number="03" title="Spacing & layout" intro="The spacing scale is 1 unit = 1px (mb-16 is 16px), so every Figma value maps to a utility directly. Below are the values the design actually uses.">
             <div class="flex flex-col gap-64">
               <div>
-                <GuideSubhead title="Layout grid" description="Desktop frame 1440px; content column 1360px (max-w-(--page-width)); 40px gutter (px-(--page-gutter), 16px on mobile); 32px inner padding inside full-bleed sections." />
+                <GuideSubhead title="Layout grid" description="Desktop frame 1440px; content column 1360px (max-w-(--page-width)); 40px gutter (px-(--page-gutter), 16px on mobile). The site header is 68px tall (h-(--header-height)) and overlays the page; it and the hero run full width on the gutter." />
                 <div class="rounded-16 bg-ink p-16 text-white">
                   <div class="flex items-stretch gap-0 rounded-8 border border-white/25 border-dashed">
                     <div class="flex w-[2.78%] min-w-24 items-center justify-center bg-blue-02/40 py-48">
@@ -462,22 +467,23 @@ const checkItems = [
             </div>
           </GuideSection>
 
-          <GuideSection id="decoration" number="06" title="Decoration" intro="Quiet, technical ornament: hairline grids, a single square marker, and the blurred molecule mark. No drop shadows, no outlines, no icons for decoration.">
+          <GuideSection id="decoration" number="06" title="Decoration" intro="Quiet, technical ornament: hairline grids, a single square marker, and the blurred molecule emblem. No drop shadows, no outlines, no icons for decoration.">
             <div class="grid grid-cols-1 gap-16 md:grid-cols-3">
               <article class="overflow-hidden rounded-16 border border-black-01/15 md:col-span-3">
-                <div class="relative isolate aspect-[1440/647] overflow-hidden bg-navy-glow">
-                  <img
-                    src="/brand/logo-mark-blurred.svg"
-                    alt=""
-                    width="550"
-                    height="555"
-                    class="-translate-1/2 absolute top-[54.6%] left-[14%] w-[38%] -skew-x-20 rotate-38 scale-y-94"
-                  />
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                  <div class="relative isolate aspect-[710/500] overflow-hidden bg-navy-glow">
+                    <img src="/brand/emblem-soft.svg" alt="" width="710" height="500" class="absolute inset-0 size-full" />
+                    <span class="absolute bottom-16 left-16 font-label text-label text-white/50 uppercase">Soft · at rest</span>
+                  </div>
+                  <div class="relative isolate aspect-[710/500] overflow-hidden bg-navy-glow">
+                    <img src="/brand/emblem-focus.svg" alt="" width="710" height="500" class="absolute inset-0 size-full" />
+                    <span class="absolute bottom-16 left-16 font-label text-label text-white/50 uppercase">Focus · peak of the pull</span>
+                  </div>
                 </div>
                 <div class="flex flex-col gap-8 p-16">
-                  <h4 class="font-medium text-body-lg">Blurred logo mark</h4>
-                  <p class="text-body">The AB molecule mark, heavily blurred (filter baked into the SVG), skewed −20°, rotated 38°, bleeding off the left edge of the navy glow. One per section, never over text.</p>
-                  <code class={codeClass}>/brand/logo-mark-blurred.svg</code>
+                  <h4 class="font-medium text-body-lg">Emblem</h4>
+                  <p class="text-body">The AB molecule emblem, tilted in perspective (the tilt is drawn into the SVG) and blurred into the navy glow, bleeding off the left edge. Two copies ship: soft (blur 50, how it rests) and focus (blur 16), which the emblem fades toward mid-screen. One per section, never over text. Render it with the Emblem component, which owns the motion.</p>
+                  <code class={codeClass}>&lt;Emblem class="…position and width…" /&gt; · /brand/emblem-soft.svg · /brand/emblem-focus.svg</code>
                 </div>
               </article>
               <article class="overflow-hidden rounded-16 border border-black-01/15">
@@ -518,7 +524,57 @@ const checkItems = [
             </div>
           </GuideSection>
 
-          <GuideSection id="imagery" number="07" title="Imagery & illustration" intro="Real engineers, real benches. Low-key, cool-toned photography with practical light sources and shallow depth of field.">
+          <GuideSection id="motion" number="07" title="Motion" intro="Motion stays quiet: a one-time page-load intro (decoration draws first, copy follows) and slow, scroll-linked depth on the emblem. Reduced motion lands on the finished, still state everywhere.">
+          <div class="flex flex-col gap-48">
+            {
+              motionSpecs.map((spec) => (
+                <div>
+                  <GuideSubhead title={spec.title} description={spec.description} />
+                  <div class="overflow-x-auto">
+                    <table class="w-full min-w-640 text-left text-body">
+                      <thead class="font-label text-black-01/50 text-label uppercase">
+                        <tr>
+                          <th class="pr-16 pb-12 font-normal">Target</th>
+                          <th class="pr-16 pb-12 font-normal">Property</th>
+                          <th class="pr-16 pb-12 font-normal">Values</th>
+                          <th class="pr-16 pb-12 font-normal">Duration</th>
+                          <th class="pr-16 pb-12 font-normal">Start</th>
+                          <th class="pb-12 font-normal">Ease</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {spec.steps.map((step) => (
+                          <tr class="border-black-01/15 border-t">
+                            <td class="py-12 pr-16">{step.target}</td>
+                            <td class="py-12 pr-16"><code class={codeClass}>{step.property}</code></td>
+                            <td class="py-12 pr-16">{step.from}</td>
+                            <td class="py-12 pr-16">{step.duration}</td>
+                            <td class="py-12 pr-16">{step.delay}</td>
+                            <td class="py-12"><code class={codeClass}>{step.ease}</code></td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))
+            }
+            <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+              <article class="flex flex-col gap-8 rounded-16 border border-black-01/15 p-24">
+                <h4 class="font-medium text-body-lg">Reveal curve</h4>
+                <code class={codeClass}>cubic-bezier(0.23, 1, 0.32, 1)</code>
+                <p class="text-black-01/75 text-body">Fast away, long settle: a line lands rather than arrives. Shared with every reveal via <code class={codeClass}>REVEAL_CURVE</code> in <code class={codeClass}>src/lib/curves.ts</code>.</p>
+              </article>
+              <article class="flex flex-col gap-8 rounded-16 border border-black-01/15 p-24">
+                <h4 class="font-medium text-body-lg">Draw curve</h4>
+                <code class={codeClass}>power3.inOut</code>
+                <p class="text-black-01/75 text-body">Symmetric, so a hairline travels across the frame. Horizontal rules draw from the left, the bottom rule from the right, the divider from the top.</p>
+              </article>
+            </div>
+          </div>
+        </GuideSection>
+
+        <GuideSection id="imagery" number="08" title="Imagery & illustration" intro="Real engineers, real benches. Low-key, cool-toned photography with practical light sources and shallow depth of field.">
             <div class="flex flex-col gap-64">
               <div>
                 <GuideSubhead title="Logo" description="White wordmark on dark grounds. Header size 153×41." />
@@ -557,19 +613,23 @@ const checkItems = [
             </div>
           </GuideSection>
 
-          <GuideSection id="sections" number="08" title="Sections built" intro="Every Figma section adopted so far, with what it draws from the system. Add a card here when a new section lands.">
+          <GuideSection id="sections" number="09" title="Sections built" intro="Every Figma section adopted so far, with what it draws from the system. Add a card here when a new section lands.">
             <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
               {
                 BUILT_SECTIONS.map((section) => (
                   <article class="flex flex-col gap-16 rounded-16 border border-black-01/15 p-24">
                     <div class="flex items-center justify-between gap-16">
-                      <span class="font-label text-black-01/50 text-label uppercase">{section.ref} · {section.ground}</span>
+                      <span class="flex items-center gap-8 font-label text-black-01/50 text-label uppercase">
+                      {section.ref} · {section.ground}
+                      <span class:list={['rounded-full px-8 py-4 text-body-sm', section.status === 'built' ? 'bg-black-01 text-white' : 'border border-black-01/15']}>{section.status}</span>
+                    </span>
                       <a href={figmaNodeUrl(section.nodeId)} target="_blank" rel="noopener noreferrer" class="font-label text-black-01/50 text-body-sm hover:text-black-01">
                         {section.figmaName} ↗
                       </a>
                     </div>
                     <h3 class="text-heading-4">{section.name}</h3>
                     <p class="text-black-01/75 text-body">{section.summary}</p>
+                  {section.component && <code class={codeClass}>src/features/{section.component}</code>}
                     <div class="flex flex-wrap gap-4">
                       {section.uses.map((use) => (
                         <span class={chip}>{use}</span>
@@ -581,7 +641,7 @@ const checkItems = [
             </div>
           </GuideSection>
 
-          <GuideSection id="changelog" number="09" title="Changelog">
+          <GuideSection id="changelog" number="10" title="Changelog">
             <ol class="flex flex-col">
               {
                 CHANGELOG.map((entry) => (

@@ -32,6 +32,8 @@ declare global {
     "site-announcement": import("./features/site/site-announcement/SiteAnnouncementElement").SiteAnnouncementElement;
     "inner-parallax": import("~/components/InnerParallax/InnerParallaxElement") | null;
     "contact-form": import("./features/page-builder/sections/ContactFormSection/ContactFormElement").ContactFormElement;
+    "hero-intro": import("./features/page-builder/sections/HeroSection/HeroElement").HeroElement;
+    "emblem-drift": import("~/components/Emblem/EmblemElement") | null;
     "rive-canvas": import("./sanity/media/RiveElement") | null;
     "video-player": import("./sanity/media/VideoPlayerElement").VideoPlayerElement;
     "sanity-image": import("./sanity/media/SanityImageElement").SanityImageElement;

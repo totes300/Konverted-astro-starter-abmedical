@@ -98,6 +98,46 @@ export type AppLink = {
   openInNewTab?: boolean;
 };
 
+export type SectionContentAppLink = {
+  type?: "internal" | "external" | "email" | "phone" | "file" | "params";
+  external?: string;
+  email?: string;
+  phone?: string;
+  file?: File1;
+  canDownload?: boolean;
+  paramsHref?: string;
+  internal?: Internal1;
+  customText?: string;
+  openInNewTab?: boolean;
+};
+
+export type SectionContentAppMedia = {
+  type?: "image" | "videoMux" | "videoFile" | "videoUrl" | "rive" | "lottie";
+  videoFile?: VideoFile1;
+  videoUrl?: string;
+  image?: AppMediaImage1;
+  video?: MuxVideo;
+  videoCover?: VideoCover1;
+  animatedThumbnail?: AnimatedThumbnail1;
+  riveFile?: RiveFile1;
+  riveDimensions?: RiveDimensions1;
+  lottieFile?: LottieFile1;
+  lottieDimensions?: LottieDimensions1;
+};
+
+export type CapabilitiesSectionFieldSectionContentAppLink = {
+  type?: "internal" | "external" | "email" | "phone" | "file" | "params";
+  external?: string;
+  email?: string;
+  phone?: string;
+  file?: AppLinkFile1;
+  canDownload?: boolean;
+  paramsHref?: string;
+  internal?: AppLinkInternal1;
+  customText?: string;
+  openInNewTab?: boolean;
+};
+
 export type MediaBlockAppMedia = {
   type?: "image" | "videoMux" | "videoFile" | "videoUrl" | "rive" | "lottie";
   videoFile?: VideoFile;
@@ -296,6 +336,245 @@ export type AppLinkFile = {
 export type AppLinkInternal = {
   link?: PageReference | LegalPageReference | ArticleReference | BlogReference;
   sectionTarget?: string;
+};
+
+export type File1 = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "appLink.file.media" in schema
+  _type: "file";
+};
+
+export type Internal1 = {
+  link?: PageReference | LegalPageReference | ArticleReference | BlogReference;
+  sectionTarget?: string;
+};
+
+export type VideoFile1 = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "media1" in schema
+  _type: "file";
+};
+
+export type AppMediaImage1 = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "image.media1" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type VideoCover1 = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "videoCover.media1" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type AnimatedThumbnail1 = {
+  enabled?: boolean;
+  start?: number;
+  end?: number;
+};
+
+export type RiveFile1 = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "riveFile.media1" in schema
+  _type: "file";
+};
+
+export type RiveDimensions1 = {
+  width?: number;
+  height?: number;
+};
+
+export type LottieFile1 = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "lottieFile.media1" in schema
+  _type: "file";
+};
+
+export type LottieDimensions1 = {
+  width?: number;
+  height?: number;
+};
+
+export type AppLinkFile1 = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "file.media1" in schema
+  _type: "file";
+};
+
+export type AppLinkInternal1 = {
+  link?: PageReference | LegalPageReference | ArticleReference | BlogReference;
+  sectionTarget?: string;
+};
+
+export type ProcessStageMedia = {
+  type?: "image" | "videoMux" | "videoFile" | "videoUrl" | "rive" | "lottie";
+  videoFile?: ProcessStageMediaVideoFile;
+  videoUrl?: string;
+  image?: ProcessStageMediaImage;
+  video?: MuxVideo;
+  videoCover?: ProcessStageMediaVideoCover;
+  animatedThumbnail?: ProcessStageMediaAnimatedThumbnail;
+  riveFile?: ProcessStageMediaRiveFile;
+  riveDimensions?: ProcessStageMediaRiveDimensions;
+  lottieFile?: ProcessStageMediaLottieFile;
+  lottieDimensions?: ProcessStageMediaLottieDimensions;
+};
+
+export type ProcessStageMediaVideoFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "processStage.media.videoFile.media" in schema
+  _type: "file";
+};
+
+export type ProcessStageMediaImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "processStage.media.image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type ProcessStageMediaVideoCover = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "processStage.media.videoCover.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type ProcessStageMediaAnimatedThumbnail = {
+  enabled?: boolean;
+  start?: number;
+  end?: number;
+};
+
+export type ProcessStageMediaRiveFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "processStage.media.riveFile.media" in schema
+  _type: "file";
+};
+
+export type ProcessStageMediaRiveDimensions = {
+  width?: number;
+  height?: number;
+};
+
+export type ProcessStageMediaLottieFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "processStage.media.lottieFile.media" in schema
+  _type: "file";
+};
+
+export type ProcessStageMediaLottieDimensions = {
+  width?: number;
+  height?: number;
+};
+
+export type SecondaryMedia = {
+  type?: "image" | "videoMux" | "videoFile" | "videoUrl" | "rive" | "lottie";
+  videoFile?: SecondaryMediaVideoFile;
+  videoUrl?: string;
+  image?: SecondaryMediaImage;
+  video?: MuxVideo;
+  videoCover?: SecondaryMediaVideoCover;
+  animatedThumbnail?: SecondaryMediaAnimatedThumbnail;
+  riveFile?: SecondaryMediaRiveFile;
+  riveDimensions?: SecondaryMediaRiveDimensions;
+  lottieFile?: SecondaryMediaLottieFile;
+  lottieDimensions?: SecondaryMediaLottieDimensions;
+};
+
+export type SecondaryMediaVideoFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "secondaryMedia.videoFile.media" in schema
+  _type: "file";
+};
+
+export type SecondaryMediaImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "secondaryMedia.image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SecondaryMediaVideoCover = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "secondaryMedia.videoCover.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SecondaryMediaAnimatedThumbnail = {
+  enabled?: boolean;
+  start?: number;
+  end?: number;
+};
+
+export type SecondaryMediaRiveFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "secondaryMedia.riveFile.media" in schema
+  _type: "file";
+};
+
+export type SecondaryMediaRiveDimensions = {
+  width?: number;
+  height?: number;
+};
+
+export type SecondaryMediaLottieFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "secondaryMedia.lottieFile.media" in schema
+  _type: "file";
+};
+
+export type SecondaryMediaLottieDimensions = {
+  width?: number;
+  height?: number;
+};
+
+export type ProcessSection = {
+  _type: "processSection";
+  eyebrow?: string;
+  headline?: string;
+  lead?: string;
+  stages?: Array<{
+    eyebrow?: string;
+    headline?: string;
+    text?: string;
+    items?: Array<string>;
+    layout?: "split" | "gallery" | "centered";
+    media?: ProcessStageMedia;
+    secondaryMedia?: SecondaryMedia;
+    _type: "processStage";
+    _key: string;
+  }>;
+};
+
+export type CapabilitiesSection = {
+  _type: "capabilitiesSection";
+  eyebrow?: string;
+  headline?: string;
+  lead?: string;
+  items?: Array<{
+    title?: string;
+    description?: string;
+    _type: "capability";
+    _key: string;
+  }>;
+  appLink?: CapabilitiesSectionFieldSectionContentAppLink;
+};
+
+export type HeroSection = {
+  _type: "heroSection";
+  headline?: string;
+  appLink?: SectionContentAppLink;
+  appMedia?: SectionContentAppMedia;
 };
 
 export type HeadlineSection = {
@@ -739,6 +1018,26 @@ export type Site = {
       _type: "appLink";
       _key: string;
     }>;
+    cta?: {
+      type?: "internal" | "external" | "email" | "phone" | "file" | "params";
+      external?: string;
+      email?: string;
+      phone?: string;
+      file?: {
+        asset?: SanityFileAssetReference;
+        media?: unknown;
+        _type: "file";
+      };
+      canDownload?: boolean;
+      paramsHref?: string;
+      internal?: {
+        link?:
+          PageReference | LegalPageReference | ArticleReference | BlogReference;
+        sectionTarget?: string;
+      };
+      customText?: string;
+      openInNewTab?: boolean;
+    };
   };
   contacts?: Array<{
     name?: string;
@@ -869,6 +1168,24 @@ export type Page = {
           _type: "headlineSectionField";
           _key: string;
         }
+      | {
+          sectionSettings?: SectionSettings;
+          sectionContent?: HeroSection;
+          _type: "heroSectionField";
+          _key: string;
+        }
+      | {
+          sectionSettings?: SectionSettings;
+          sectionContent?: CapabilitiesSection;
+          _type: "capabilitiesSectionField";
+          _key: string;
+        }
+      | {
+          sectionSettings?: SectionSettings;
+          sectionContent?: ProcessSection;
+          _type: "processSectionField";
+          _key: string;
+        }
     >;
   };
   seoMetadata?: {
@@ -889,6 +1206,18 @@ export type Page = {
     enabled?: boolean;
     content?: string;
   };
+};
+
+export type MuxVideoAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
+};
+
+export type MuxVideo = {
+  _type: "mux.video";
+  asset?: MuxVideoAssetReference;
 };
 
 export type LegalPage = {
@@ -1281,18 +1610,6 @@ export type Blog = {
   };
 };
 
-export type MuxVideoAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "mux.videoAsset";
-};
-
-export type MuxVideo = {
-  _type: "mux.video";
-  asset?: MuxVideoAssetReference;
-};
-
 export type MuxVideoAsset = {
   _id: string;
   _type: "mux.videoAsset";
@@ -1525,6 +1842,9 @@ export type AllSanitySchemaTypes =
   | BlogReference
   | Internal
   | AppLink
+  | SectionContentAppLink
+  | SectionContentAppMedia
+  | CapabilitiesSectionFieldSectionContentAppLink
   | MediaBlockAppMedia
   | VideoFile
   | SanityImageAssetReference
@@ -1554,6 +1874,39 @@ export type AllSanitySchemaTypes =
   | AppMediaLottieDimensions
   | AppLinkFile
   | AppLinkInternal
+  | File1
+  | Internal1
+  | VideoFile1
+  | AppMediaImage1
+  | VideoCover1
+  | AnimatedThumbnail1
+  | RiveFile1
+  | RiveDimensions1
+  | LottieFile1
+  | LottieDimensions1
+  | AppLinkFile1
+  | AppLinkInternal1
+  | ProcessStageMedia
+  | ProcessStageMediaVideoFile
+  | ProcessStageMediaImage
+  | ProcessStageMediaVideoCover
+  | ProcessStageMediaAnimatedThumbnail
+  | ProcessStageMediaRiveFile
+  | ProcessStageMediaRiveDimensions
+  | ProcessStageMediaLottieFile
+  | ProcessStageMediaLottieDimensions
+  | SecondaryMedia
+  | SecondaryMediaVideoFile
+  | SecondaryMediaImage
+  | SecondaryMediaVideoCover
+  | SecondaryMediaAnimatedThumbnail
+  | SecondaryMediaRiveFile
+  | SecondaryMediaRiveDimensions
+  | SecondaryMediaLottieFile
+  | SecondaryMediaLottieDimensions
+  | ProcessSection
+  | CapabilitiesSection
+  | HeroSection
   | HeadlineSection
   | ContactFormSection
   | TextSection
@@ -1574,14 +1927,14 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Site
   | Page
+  | MuxVideoAssetReference
+  | MuxVideo
   | LegalPage
   | ArticleCategoryReference
   | PersonReference
   | Article
   | Person
   | Blog
-  | MuxVideoAssetReference
-  | MuxVideo
   | MuxVideoAsset
   | MuxAssetData
   | MuxMasterFile
@@ -1877,6 +2230,27 @@ export type AgentMarkdownContentQueryResult =
       categories: null;
       sections: Array<
         | {
+            _type: "capabilitiesSectionField";
+            text: null;
+            media: null;
+            cta: {
+              type:
+                | "email"
+                | "external"
+                | "file"
+                | "internal"
+                | "params"
+                | "phone"
+                | undefined;
+              openInNewTab: boolean | false;
+              canDownload: boolean | false;
+              href: string | "" | "mailto:" | "tel:";
+              text: string | "";
+            } | undefined;
+            headline: string | undefined;
+            caption: null;
+          }
+        | {
             _type: "contactFormSectionField";
             text: Array<{
               _type: "block";
@@ -1994,6 +2368,30 @@ export type AgentMarkdownContentQueryResult =
             caption: null;
           }
         | {
+            _type: "heroSectionField";
+            text: null;
+            media: {
+              alt: string | undefined;
+              imageUrl: string | undefined;
+            } | undefined;
+            cta: {
+              type:
+                | "email"
+                | "external"
+                | "file"
+                | "internal"
+                | "params"
+                | "phone"
+                | undefined;
+              openInNewTab: boolean | false;
+              canDownload: boolean | false;
+              href: string | "" | "mailto:" | "tel:";
+              text: string | "";
+            } | undefined;
+            headline: string | undefined;
+            caption: null;
+          }
+        | {
             _type: "mediaSectionField";
             text: null;
             media: {
@@ -2003,6 +2401,14 @@ export type AgentMarkdownContentQueryResult =
             cta: null;
             headline: null;
             caption: string | undefined;
+          }
+        | {
+            _type: "processSectionField";
+            text: null;
+            media: null;
+            cta: null;
+            headline: string | undefined;
+            caption: null;
           }
         | {
             _type: "textSectionField";
@@ -2413,6 +2819,27 @@ export type AgentMarkdownBackfillQueryResult = Array<
       categories: null;
       sections: Array<
         | {
+            _type: "capabilitiesSectionField";
+            text: null;
+            media: null;
+            cta: {
+              type:
+                | "email"
+                | "external"
+                | "file"
+                | "internal"
+                | "params"
+                | "phone"
+                | undefined;
+              openInNewTab: boolean | false;
+              canDownload: boolean | false;
+              href: string | "" | "mailto:" | "tel:";
+              text: string | "";
+            } | undefined;
+            headline: string | undefined;
+            caption: null;
+          }
+        | {
             _type: "contactFormSectionField";
             text: Array<{
               _type: "block";
@@ -2530,6 +2957,30 @@ export type AgentMarkdownBackfillQueryResult = Array<
             caption: null;
           }
         | {
+            _type: "heroSectionField";
+            text: null;
+            media: {
+              alt: string | undefined;
+              imageUrl: string | undefined;
+            } | undefined;
+            cta: {
+              type:
+                | "email"
+                | "external"
+                | "file"
+                | "internal"
+                | "params"
+                | "phone"
+                | undefined;
+              openInNewTab: boolean | false;
+              canDownload: boolean | false;
+              href: string | "" | "mailto:" | "tel:";
+              text: string | "";
+            } | undefined;
+            headline: string | undefined;
+            caption: null;
+          }
+        | {
             _type: "mediaSectionField";
             text: null;
             media: {
@@ -2539,6 +2990,14 @@ export type AgentMarkdownBackfillQueryResult = Array<
             cta: null;
             headline: null;
             caption: string | undefined;
+          }
+        | {
+            _type: "processSectionField";
+            text: null;
+            media: null;
+            cta: null;
+            headline: string | undefined;
+            caption: null;
           }
         | {
             _type: "textSectionField";
@@ -2939,6 +3398,10 @@ export type FeedXmlQResult = {
 export type PageSectionsQResult = Array<
   | {
       _key: string;
+      _type: "capabilitiesSectionField";
+    }
+  | {
+      _key: string;
       _type: "contactFormSectionField";
     }
   | {
@@ -2951,7 +3414,15 @@ export type PageSectionsQResult = Array<
     }
   | {
       _key: string;
+      _type: "heroSectionField";
+    }
+  | {
+      _key: string;
       _type: "mediaSectionField";
+    }
+  | {
+      _key: string;
+      _type: "processSectionField";
     }
   | {
       _key: string;
@@ -3958,6 +4429,654 @@ export type HeadlineSectionQResult = {
   } | undefined;
 } | undefined;
 
+// Source: src/features/page-builder/queries.ts
+// Variable: HeroSectionQ
+// Query: fn frag::link($value) = $value{  type,  "openInNewTab": coalesce(openInNewTab, false),  "canDownload": select(    type == "file" => coalesce(canDownload, false),    true => false  ),  "href": coalesce([select(    type == "internal" => coalesce(      select(        defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => internal.link->uri.current + '#' + coalesce(          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionHash.current,          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0]._key,        ),        true => internal.link->uri.current,      ),      ""    ),    type == "external" => coalesce(external, ""),    type == "email" => "mailto:" + coalesce(email, ""),    type == "phone" => "tel:" + coalesce(phone, ""),    type == "file" => coalesce(file.asset->url, ""),    type == "params" => coalesce(paramsHref, ""),    true => ""  )][(string::startsWith(@, "/") && !string::startsWith(@, "//"))    || string::startsWith(@, "?")    || string::startsWith(@, "#")    || string::startsWith(lower(@), "http://")    || string::startsWith(lower(@), "https://")    || string::startsWith(lower(@), "mailto:")    || string::startsWith(lower(@), "tel:")][0], ""),  "text": coalesce(    customText,    select(      type == "internal" => coalesce(        select(          defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => coalesce(            internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionTitle,            internal.link->title,          ),          true => internal.link->title,        ),        internal.link->uri.current,        ""      ),      type == "external" => coalesce(external, ""),      type == "email" => coalesce(email, ""),      type == "phone" => coalesce(phone, ""),      type == "file" => coalesce(file.asset->originalFilename, ""),      type == "params" => coalesce(paramsHref, ""),      true => ""    ),    "",  )};fn frag::image($value) = $value{  "_id": asset->._id,  "_rev": asset->._rev,  "altText": asset->.altText,  "description": asset->.description,  "title": asset->.title,  "lqip": asset->.metadata.lqip,  "hasAlpha": asset->.metadata.hasAlpha,  "dimensions": asset->.metadata.dimensions,  crop,  hotspot,};fn frag::media($value) = $value{videoOptions{  loop,  muted,  autoPlay,  "noControls": !controls,},lottieOptions{  loop,  autoPlay,},riveOptions{  loop,  autoPlay,  stateMachine,  autoBind,},...select(  type == "image" && defined(image) => {    type,    "image": frag::image(image),    "video": null,    "rive": null,    "lottie": null,    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => image.asset->metadata.dimensions.aspectRatio,    ),  },  type == "videoMux" && defined(video) => {    type,    "image": null,    "rive": null,    "lottie": null,    video{  "_id": asset->_id,  "_rev": asset->_rev,  "playbackId": asset->playbackId,  "thumbTime": coalesce(asset->thumbTime, 1),  "duration": asset->data.duration,  "dimensions": {    "width": asset->data.tracks[0].max_width,    "height": asset->data.tracks[0].max_height,    "aspectRatio": asset->data.tracks[0].max_width / asset->data.tracks[0].max_height,  }},    "videoCover": frag::image(videoCover),    animatedThumbnail{enabled, start, end},    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => video.asset->data.tracks[0].max_width / video.asset->data.tracks[0].max_height,    ),  },  type == "lottie" && defined(lottieFile.asset) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": {      "_id": lottieFile.asset->_id,      "url": lottieFile.asset->url,      "dimensions": select(        defined(lottieDimensions.width) && defined(lottieDimensions.height) && lottieDimensions.width > 0 => {          "width": lottieDimensions.width,          "height": lottieDimensions.height,          "aspectRatio": lottieDimensions.width / lottieDimensions.height,        },        true => null      )    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      defined(lottieDimensions.width) && defined(lottieDimensions.height) && lottieDimensions.width > 0 => lottieDimensions.width / lottieDimensions.height,      true => null    ),  },  type == "rive" && defined(riveFile.asset) => {    type,    "image": null,    "video": null,    "lottie": null,    "rive": {      "_id": riveFile.asset->_id,      "url": riveFile.asset->url,      "dimensions": select(        defined(riveDimensions.width) && defined(riveDimensions.height) && riveDimensions.width > 0 => {          "width": riveDimensions.width,          "height": riveDimensions.height,          "aspectRatio": riveDimensions.width / riveDimensions.height,        },        true => null      )    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      defined(riveDimensions.width) && defined(riveDimensions.height) && riveDimensions.width > 0 => riveDimensions.width / riveDimensions.height,      true => null    ),  },  type == "videoFile" && defined(videoFile.asset) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoCover": frag::image(videoCover),    "videoFile": {      "_id": videoFile.asset->_id,      "url": videoFile.asset->url,      "mimeType": videoFile.asset->mimeType,      "dimensions": videoCover.asset->metadata.dimensions    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => videoCover.asset->metadata.dimensions.aspectRatio    ),  },  type == "videoUrl" && defined(videoUrl) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoFile": null,    "videoCover": frag::image(videoCover),    "videoUrl": {      "url": videoUrl,      "dimensions": videoCover.asset->metadata.dimensions    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => videoCover.asset->metadata.dimensions.aspectRatio    ),  },  true => {    "type": null,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoFile": null,    "videoUrl": null,    "aspectRatio": null,  })};*[_id == $docId][0].pageBuilder.sectionsArray[_type == "heroSectionField" && _key == $sectionKey][0]{    "content": sectionContent{      headline,      "cta": frag::link(appLink),      "media": frag::media(appMedia)    },    "settings": sectionSettings{      "hash": coalesce(sectionHash.current, _key),      fullBleed,    },}
+export type HeroSectionQResult = {
+  content: {
+    headline: string | undefined;
+    cta: {
+      type:
+        "email" | "external" | "file" | "internal" | "params" | "phone" | undefined;
+      openInNewTab: boolean | false;
+      canDownload: boolean | false;
+      href: string | "" | "mailto:" | "tel:";
+      text: string | "";
+    } | undefined;
+    media:
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type: "videoMux";
+          image: null;
+          rive: null;
+          lottie: null;
+          video: {
+            _id: string | undefined;
+            _rev: string | undefined;
+            playbackId: string | undefined;
+            thumbTime: number | 1;
+            duration: number | undefined;
+            dimensions: {
+              width: number | undefined;
+              height: number | undefined;
+              aspectRatio: number | undefined;
+            };
+          };
+          videoCover: {
+            _id: string | undefined;
+            _rev: string | undefined;
+            altText: string | undefined;
+            description: string | undefined;
+            title: string | undefined;
+            lqip: string | undefined;
+            hasAlpha: boolean | undefined;
+            dimensions: SanityImageDimensions | undefined;
+            crop: SanityImageCrop | undefined;
+            hotspot: SanityImageHotspot | undefined;
+          } | undefined;
+          animatedThumbnail: {
+            enabled: boolean | undefined;
+            start: number | undefined;
+            end: number | undefined;
+          } | undefined;
+          aspectRatio: number | undefined;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type: null;
+          image: null;
+          video: null;
+          rive: null;
+          lottie: null;
+          videoFile: null;
+          videoUrl: null;
+          aspectRatio: null;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type: "videoUrl";
+          image: null;
+          video: null;
+          rive: null;
+          lottie: null;
+          videoFile: null;
+          videoCover: {
+            _id: string | undefined;
+            _rev: string | undefined;
+            altText: string | undefined;
+            description: string | undefined;
+            title: string | undefined;
+            lqip: string | undefined;
+            hasAlpha: boolean | undefined;
+            dimensions: SanityImageDimensions | undefined;
+            crop: SanityImageCrop | undefined;
+            hotspot: SanityImageHotspot | undefined;
+          } | undefined;
+          videoUrl: {
+            url: string;
+            dimensions: SanityImageDimensions | undefined;
+          };
+          aspectRatio: number | undefined;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type:
+            | "image"
+            | "lottie"
+            | "rive"
+            | "videoFile"
+            | "videoMux"
+            | "videoUrl"
+            | undefined;
+          image: null;
+          video: null;
+          rive: null;
+          lottie: null;
+          videoCover: {
+            _id: string | undefined;
+            _rev: string | undefined;
+            altText: string | undefined;
+            description: string | undefined;
+            title: string | undefined;
+            lqip: string | undefined;
+            hasAlpha: boolean | undefined;
+            dimensions: SanityImageDimensions | undefined;
+            crop: SanityImageCrop | undefined;
+            hotspot: SanityImageHotspot | undefined;
+          } | undefined;
+          videoFile: {
+            _id: string | undefined;
+            url: string | undefined;
+            mimeType: string | undefined;
+            dimensions: SanityImageDimensions | undefined;
+          };
+          aspectRatio: number | undefined;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type: "image";
+          image: {
+            _id: string | undefined;
+            _rev: string | undefined;
+            altText: string | undefined;
+            description: string | undefined;
+            title: string | undefined;
+            lqip: string | undefined;
+            hasAlpha: boolean | undefined;
+            dimensions: SanityImageDimensions | undefined;
+            crop: SanityImageCrop | undefined;
+            hotspot: SanityImageHotspot | undefined;
+          };
+          video: null;
+          rive: null;
+          lottie: null;
+          aspectRatio: number | undefined;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type:
+            | "image"
+            | "lottie"
+            | "rive"
+            | "videoFile"
+            | "videoMux"
+            | "videoUrl"
+            | undefined;
+          image: null;
+          video: null;
+          lottie: null;
+          rive: {
+            _id: string | undefined;
+            url: string | undefined;
+            dimensions: {
+              width: number | undefined;
+              height: number | undefined;
+              aspectRatio: number | undefined;
+            } | undefined;
+          };
+          aspectRatio: number | undefined;
+        }
+      | {
+          videoOptions: null;
+          lottieOptions: null;
+          riveOptions: null;
+          type:
+            | "image"
+            | "lottie"
+            | "rive"
+            | "videoFile"
+            | "videoMux"
+            | "videoUrl"
+            | undefined;
+          image: null;
+          video: null;
+          rive: null;
+          lottie: {
+            _id: string | undefined;
+            url: string | undefined;
+            dimensions: {
+              width: number | undefined;
+              height: number | undefined;
+              aspectRatio: number | undefined;
+            } | undefined;
+          };
+          aspectRatio: number | undefined;
+        }
+      | undefined;
+  } | undefined;
+  settings: {
+    hash: string | undefined;
+    fullBleed: boolean | undefined;
+  } | undefined;
+} | undefined;
+
+// Source: src/features/page-builder/queries.ts
+// Variable: CapabilitiesSectionQ
+// Query: fn frag::link($value) = $value{  type,  "openInNewTab": coalesce(openInNewTab, false),  "canDownload": select(    type == "file" => coalesce(canDownload, false),    true => false  ),  "href": coalesce([select(    type == "internal" => coalesce(      select(        defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => internal.link->uri.current + '#' + coalesce(          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionHash.current,          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0]._key,        ),        true => internal.link->uri.current,      ),      ""    ),    type == "external" => coalesce(external, ""),    type == "email" => "mailto:" + coalesce(email, ""),    type == "phone" => "tel:" + coalesce(phone, ""),    type == "file" => coalesce(file.asset->url, ""),    type == "params" => coalesce(paramsHref, ""),    true => ""  )][(string::startsWith(@, "/") && !string::startsWith(@, "//"))    || string::startsWith(@, "?")    || string::startsWith(@, "#")    || string::startsWith(lower(@), "http://")    || string::startsWith(lower(@), "https://")    || string::startsWith(lower(@), "mailto:")    || string::startsWith(lower(@), "tel:")][0], ""),  "text": coalesce(    customText,    select(      type == "internal" => coalesce(        select(          defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => coalesce(            internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionTitle,            internal.link->title,          ),          true => internal.link->title,        ),        internal.link->uri.current,        ""      ),      type == "external" => coalesce(external, ""),      type == "email" => coalesce(email, ""),      type == "phone" => coalesce(phone, ""),      type == "file" => coalesce(file.asset->originalFilename, ""),      type == "params" => coalesce(paramsHref, ""),      true => ""    ),    "",  )};*[_id == $docId][0].pageBuilder.sectionsArray[_type == "capabilitiesSectionField" && _key == $sectionKey][0]{    "content": sectionContent{      eyebrow,      headline,      lead,      "items": items[]{ "key": _key, title, description },      "cta": frag::link(appLink)    },    "settings": sectionSettings{      "hash": coalesce(sectionHash.current, _key),      fullBleed,    },}
+export type CapabilitiesSectionQResult = {
+  content: {
+    eyebrow: string | undefined;
+    headline: string | undefined;
+    lead: string | undefined;
+    items: Array<{
+      key: string;
+      title: string | undefined;
+      description: string | undefined;
+    }> | undefined;
+    cta: {
+      type:
+        "email" | "external" | "file" | "internal" | "params" | "phone" | undefined;
+      openInNewTab: boolean | false;
+      canDownload: boolean | false;
+      href: string | "" | "mailto:" | "tel:";
+      text: string | "";
+    } | undefined;
+  } | undefined;
+  settings: {
+    hash: string | undefined;
+    fullBleed: boolean | undefined;
+  } | undefined;
+} | undefined;
+
+// Source: src/features/page-builder/queries.ts
+// Variable: ProcessSectionQ
+// Query: fn frag::image($value) = $value{  "_id": asset->._id,  "_rev": asset->._rev,  "altText": asset->.altText,  "description": asset->.description,  "title": asset->.title,  "lqip": asset->.metadata.lqip,  "hasAlpha": asset->.metadata.hasAlpha,  "dimensions": asset->.metadata.dimensions,  crop,  hotspot,};fn frag::media($value) = $value{videoOptions{  loop,  muted,  autoPlay,  "noControls": !controls,},lottieOptions{  loop,  autoPlay,},riveOptions{  loop,  autoPlay,  stateMachine,  autoBind,},...select(  type == "image" && defined(image) => {    type,    "image": frag::image(image),    "video": null,    "rive": null,    "lottie": null,    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => image.asset->metadata.dimensions.aspectRatio,    ),  },  type == "videoMux" && defined(video) => {    type,    "image": null,    "rive": null,    "lottie": null,    video{  "_id": asset->_id,  "_rev": asset->_rev,  "playbackId": asset->playbackId,  "thumbTime": coalesce(asset->thumbTime, 1),  "duration": asset->data.duration,  "dimensions": {    "width": asset->data.tracks[0].max_width,    "height": asset->data.tracks[0].max_height,    "aspectRatio": asset->data.tracks[0].max_width / asset->data.tracks[0].max_height,  }},    "videoCover": frag::image(videoCover),    animatedThumbnail{enabled, start, end},    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => video.asset->data.tracks[0].max_width / video.asset->data.tracks[0].max_height,    ),  },  type == "lottie" && defined(lottieFile.asset) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": {      "_id": lottieFile.asset->_id,      "url": lottieFile.asset->url,      "dimensions": select(        defined(lottieDimensions.width) && defined(lottieDimensions.height) && lottieDimensions.width > 0 => {          "width": lottieDimensions.width,          "height": lottieDimensions.height,          "aspectRatio": lottieDimensions.width / lottieDimensions.height,        },        true => null      )    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      defined(lottieDimensions.width) && defined(lottieDimensions.height) && lottieDimensions.width > 0 => lottieDimensions.width / lottieDimensions.height,      true => null    ),  },  type == "rive" && defined(riveFile.asset) => {    type,    "image": null,    "video": null,    "lottie": null,    "rive": {      "_id": riveFile.asset->_id,      "url": riveFile.asset->url,      "dimensions": select(        defined(riveDimensions.width) && defined(riveDimensions.height) && riveDimensions.width > 0 => {          "width": riveDimensions.width,          "height": riveDimensions.height,          "aspectRatio": riveDimensions.width / riveDimensions.height,        },        true => null      )    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      defined(riveDimensions.width) && defined(riveDimensions.height) && riveDimensions.width > 0 => riveDimensions.width / riveDimensions.height,      true => null    ),  },  type == "videoFile" && defined(videoFile.asset) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoCover": frag::image(videoCover),    "videoFile": {      "_id": videoFile.asset->_id,      "url": videoFile.asset->url,      "mimeType": videoFile.asset->mimeType,      "dimensions": videoCover.asset->metadata.dimensions    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => videoCover.asset->metadata.dimensions.aspectRatio    ),  },  type == "videoUrl" && defined(videoUrl) => {    type,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoFile": null,    "videoCover": frag::image(videoCover),    "videoUrl": {      "url": videoUrl,      "dimensions": videoCover.asset->metadata.dimensions    },    "aspectRatio": select(      aspectRatio > 0 => aspectRatio,      true => videoCover.asset->metadata.dimensions.aspectRatio    ),  },  true => {    "type": null,    "image": null,    "video": null,    "rive": null,    "lottie": null,    "videoFile": null,    "videoUrl": null,    "aspectRatio": null,  })};*[_id == $docId][0].pageBuilder.sectionsArray[_type == "processSectionField" && _key == $sectionKey][0]{    "content": sectionContent{      eyebrow,      headline,      lead,      "stages": stages[]{        "key": _key,        eyebrow,        headline,        text,        items,        layout,        "media": frag::media(media),        "secondaryMedia": frag::media(secondaryMedia)      }    },    "settings": sectionSettings{      "hash": coalesce(sectionHash.current, _key),      fullBleed,    },}
+export type ProcessSectionQResult = {
+  content: {
+    eyebrow: string | undefined;
+    headline: string | undefined;
+    lead: string | undefined;
+    stages: Array<{
+      key: string;
+      eyebrow: string | undefined;
+      headline: string | undefined;
+      text: string | undefined;
+      items: Array<string> | undefined;
+      layout: "centered" | "gallery" | "split" | undefined;
+      media:
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "videoMux";
+            image: null;
+            rive: null;
+            lottie: null;
+            video: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              playbackId: string | undefined;
+              thumbTime: number | 1;
+              duration: number | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              };
+            };
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            animatedThumbnail: {
+              enabled: boolean | undefined;
+              start: number | undefined;
+              end: number | undefined;
+            } | undefined;
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: null;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoFile: null;
+            videoUrl: null;
+            aspectRatio: null;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "videoUrl";
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoFile: null;
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            videoUrl: {
+              url: string;
+              dimensions: SanityImageDimensions | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            videoFile: {
+              _id: string | undefined;
+              url: string | undefined;
+              mimeType: string | undefined;
+              dimensions: SanityImageDimensions | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "image";
+            image: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            };
+            video: null;
+            rive: null;
+            lottie: null;
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            lottie: null;
+            rive: {
+              _id: string | undefined;
+              url: string | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              } | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: {
+              _id: string | undefined;
+              url: string | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              } | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | undefined;
+      secondaryMedia:
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "videoMux";
+            image: null;
+            rive: null;
+            lottie: null;
+            video: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              playbackId: string | undefined;
+              thumbTime: number | 1;
+              duration: number | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              };
+            };
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            animatedThumbnail: {
+              enabled: boolean | undefined;
+              start: number | undefined;
+              end: number | undefined;
+            } | undefined;
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: null;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoFile: null;
+            videoUrl: null;
+            aspectRatio: null;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "videoUrl";
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoFile: null;
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            videoUrl: {
+              url: string;
+              dimensions: SanityImageDimensions | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: null;
+            videoCover: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            } | undefined;
+            videoFile: {
+              _id: string | undefined;
+              url: string | undefined;
+              mimeType: string | undefined;
+              dimensions: SanityImageDimensions | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type: "image";
+            image: {
+              _id: string | undefined;
+              _rev: string | undefined;
+              altText: string | undefined;
+              description: string | undefined;
+              title: string | undefined;
+              lqip: string | undefined;
+              hasAlpha: boolean | undefined;
+              dimensions: SanityImageDimensions | undefined;
+              crop: SanityImageCrop | undefined;
+              hotspot: SanityImageHotspot | undefined;
+            };
+            video: null;
+            rive: null;
+            lottie: null;
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            lottie: null;
+            rive: {
+              _id: string | undefined;
+              url: string | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              } | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | {
+            videoOptions: null;
+            lottieOptions: null;
+            riveOptions: null;
+            type:
+              | "image"
+              | "lottie"
+              | "rive"
+              | "videoFile"
+              | "videoMux"
+              | "videoUrl"
+              | undefined;
+            image: null;
+            video: null;
+            rive: null;
+            lottie: {
+              _id: string | undefined;
+              url: string | undefined;
+              dimensions: {
+                width: number | undefined;
+                height: number | undefined;
+                aspectRatio: number | undefined;
+              } | undefined;
+            };
+            aspectRatio: number | undefined;
+          }
+        | undefined;
+    }> | undefined;
+  } | undefined;
+  settings: {
+    hash: string | undefined;
+    fullBleed: boolean | undefined;
+  } | undefined;
+} | undefined;
+
 // Source: src/features/site/query.ts
 // Variable: SiteQuery
 // Query: fn frag::image($value) = $value{  "_id": asset->._id,  "_rev": asset->._rev,  "altText": asset->.altText,  "description": asset->.description,  "title": asset->.title,  "lqip": asset->.metadata.lqip,  "hasAlpha": asset->.metadata.hasAlpha,  "dimensions": asset->.metadata.dimensions,  crop,  hotspot,};*[_type == "site"][0]{  name,  "socialProfiles": contacts[appLink.type == "external"].appLink.external,  seoMetadata{  title,  description,  "image": frag::image(image),  "robots": select(noIndex => "noindex,follow", true => undefined),},  "favicon": *[_type == "siteSettings"][0].favicon{  "iconLight": frag::image(iconLight),  "iconDark": frag::image(iconDark)}}
@@ -4127,7 +5246,7 @@ export type SiteFooterQResult = {
 
 // Source: src/features/site/site-header/query.ts
 // Variable: SiteHeaderQ
-// Query: fn frag::link($value) = $value{  type,  "openInNewTab": coalesce(openInNewTab, false),  "canDownload": select(    type == "file" => coalesce(canDownload, false),    true => false  ),  "href": coalesce([select(    type == "internal" => coalesce(      select(        defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => internal.link->uri.current + '#' + coalesce(          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionHash.current,          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0]._key,        ),        true => internal.link->uri.current,      ),      ""    ),    type == "external" => coalesce(external, ""),    type == "email" => "mailto:" + coalesce(email, ""),    type == "phone" => "tel:" + coalesce(phone, ""),    type == "file" => coalesce(file.asset->url, ""),    type == "params" => coalesce(paramsHref, ""),    true => ""  )][(string::startsWith(@, "/") && !string::startsWith(@, "//"))    || string::startsWith(@, "?")    || string::startsWith(@, "#")    || string::startsWith(lower(@), "http://")    || string::startsWith(lower(@), "https://")    || string::startsWith(lower(@), "mailto:")    || string::startsWith(lower(@), "tel:")][0], ""),  "text": coalesce(    customText,    select(      type == "internal" => coalesce(        select(          defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => coalesce(            internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionTitle,            internal.link->title,          ),          true => internal.link->title,        ),        internal.link->uri.current,        ""      ),      type == "external" => coalesce(external, ""),      type == "email" => coalesce(email, ""),      type == "phone" => coalesce(phone, ""),      type == "file" => coalesce(file.asset->originalFilename, ""),      type == "params" => coalesce(paramsHref, ""),      true => ""    ),    "",  )};*[_type == "site"][0]{  header{    links[]{"key": _key, ...frag::link(@)}  }}
+// Query: fn frag::link($value) = $value{  type,  "openInNewTab": coalesce(openInNewTab, false),  "canDownload": select(    type == "file" => coalesce(canDownload, false),    true => false  ),  "href": coalesce([select(    type == "internal" => coalesce(      select(        defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => internal.link->uri.current + '#' + coalesce(          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionHash.current,          internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0]._key,        ),        true => internal.link->uri.current,      ),      ""    ),    type == "external" => coalesce(external, ""),    type == "email" => "mailto:" + coalesce(email, ""),    type == "phone" => "tel:" + coalesce(phone, ""),    type == "file" => coalesce(file.asset->url, ""),    type == "params" => coalesce(paramsHref, ""),    true => ""  )][(string::startsWith(@, "/") && !string::startsWith(@, "//"))    || string::startsWith(@, "?")    || string::startsWith(@, "#")    || string::startsWith(lower(@), "http://")    || string::startsWith(lower(@), "https://")    || string::startsWith(lower(@), "mailto:")    || string::startsWith(lower(@), "tel:")][0], ""),  "text": coalesce(    customText,    select(      type == "internal" => coalesce(        select(          defined(internal.sectionTarget) && defined(internal.link->pageBuilder.sectionsArray) => coalesce(            internal.link->pageBuilder.sectionsArray[_key == ^.internal.sectionTarget][0].sectionSettings.sectionTitle,            internal.link->title,          ),          true => internal.link->title,        ),        internal.link->uri.current,        ""      ),      type == "external" => coalesce(external, ""),      type == "email" => coalesce(email, ""),      type == "phone" => coalesce(phone, ""),      type == "file" => coalesce(file.asset->originalFilename, ""),      type == "params" => coalesce(paramsHref, ""),      true => ""    ),    "",  )};*[_type == "site"][0]{  header{    links[]{"key": _key, ...frag::link(@)},    "cta": frag::link(cta)  }}
 export type SiteHeaderQResult = {
   header: {
     links: Array<{
@@ -4139,6 +5258,14 @@ export type SiteHeaderQResult = {
       href: string | "" | "mailto:" | "tel:";
       text: string | "";
     }> | undefined;
+    cta: {
+      type:
+        "email" | "external" | "file" | "internal" | "params" | "phone" | undefined;
+      openInNewTab: boolean | false;
+      canDownload: boolean | false;
+      href: string | "" | "mailto:" | "tel:";
+      text: string | "";
+    } | undefined;
   } | undefined;
 } | undefined;
 

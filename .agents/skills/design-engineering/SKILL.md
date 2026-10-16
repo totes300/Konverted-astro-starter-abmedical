@@ -22,7 +22,7 @@ Apply when the task is **interaction design**, **CSS/motion polish**, **animatio
 
 1. Confirm the work is **craft/UI** (this skill) vs **runtime wiring** alone (**astro**).
 2. Read the relevant file(s) under Reference Files: animation decisions vs components/CSS vs gestures vs patterns.
-3. Align snippets with this repo: the Web Animations API (`Element.animate`) and CSS, no animation library (see **custom-elements**).
+3. Align snippets with this repo: the Web Animations API (`Element.animate`) and CSS; GSAP only for a section's page-load intro (see **custom-elements**).
 4. Run `npm run check` when touching components.
 
 ## Scope Guidance

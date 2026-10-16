@@ -1,0 +1,91 @@
+---
+import Button from "~/components/Button.astro";
+import Emblem from "~/components/Emblem/Emblem.astro";
+import Eyebrow from "~/components/Eyebrow.astro";
+import SectionFrame from "~/features/page-builder/SectionFrame.astro";
+import type { SectionLayoutSettings } from "~/features/page-builder/section-layout";
+import type { LinkFragmentResult } from "~/features/sanity/link/fragment";
+import { safeHref } from "~/features/sanity/link/safe-href";
+import { cx } from "~/features/style/utils";
+
+// The hero's hairline grid carried on: a four-column grid whose last column starts on the hero's divider,
+// the headline across the first three, and up to three numbered capabilities above the link.
+type Props = {
+  eyebrow?: string | null;
+  headline?: string | null;
+  lead?: string | null;
+  items?: { key: string; title?: string | null; description?: string | null }[] | null;
+  cta?: LinkFragmentResult | null;
+  settings?: SectionLayoutSettings | null;
+  id?: string;
+  class?: string;
+  [key: `data-${string}`]: string | undefined;
+};
+
+const { eyebrow, headline, lead, items, cta, settings, id, class: className, ...data } = Astro.props;
+
+const headlineLines = (headline ?? "").split("\n");
+const capabilities = items ?? [];
+const href = safeHref(cta?.href);
+const rule = "pointer-events-none absolute bg-white/25";
+---
+
+<SectionFrame
+  settings={settings}
+  flush
+  id={id}
+  class={cx('relative isolate overflow-hidden bg-navy-glow text-white', className)}
+  {...data}
+>
+  <Emblem class="-z-1 -left-120 top-200 w-480 lg:-left-150 lg:top-100 lg:w-710" />
+
+  <div class="grid grid-cols-1 lg:grid-cols-4">
+    <div class="flex flex-col gap-48 pt-48 pb-40 lg:col-span-3 lg:min-h-460 lg:justify-between lg:pt-32 lg:pr-40 lg:pb-48">
+      {eyebrow && <Eyebrow label={eyebrow} tone="dark" />}
+      <h2 class="text-balance text-heading-1">
+        {headlineLines.map((line, index) => (index === 0 ? line : <Fragment> <br class="hidden lg:inline" />{line}</Fragment>))}
+      </h2>
+    </div>
+
+    <div class="relative pb-48 lg:flex lg:flex-col lg:justify-end lg:pt-32 lg:pb-48 lg:pl-32">
+      <span aria-hidden="true" class:list={[rule, 'inset-y-0 left-0 hidden w-px lg:block']}></span>
+      {lead && <p class="text-body-lg text-white/75">{lead}</p>}
+    </div>
+
+    <div class="relative grid grid-cols-1 lg:col-span-4 lg:grid-cols-4">
+      <span aria-hidden="true" class:list={[rule, '-inset-x-(--page-gutter) top-0 h-px']}></span>
+      <span aria-hidden="true" class:list={[rule, '-inset-x-(--page-gutter) bottom-0 h-px']}></span>
+
+      {
+        capabilities.map((item, index) => (
+          <div class:list={['relative flex flex-col gap-32 py-32 lg:min-h-320 lg:gap-96 lg:pb-48', index === 0 ? 'lg:pr-32' : 'lg:px-32']}>
+            {index > 0 && <span aria-hidden="true" class:list={[rule, '-inset-x-(--page-gutter) top-0 h-px lg:hidden']}></span>}
+            {index > 0 && <span aria-hidden="true" class:list={[rule, 'inset-y-0 left-0 hidden w-px lg:block']}></span>}
+            <Eyebrow label={String(index + 1).padStart(2, '0')} tone="dark" class="text-white/50" />
+            <div class="flex flex-col gap-8">
+              <h3 class="font-medium text-body-lg">{item.title}</h3>
+              {item.description && <p class="text-body text-white/50">{item.description}</p>}
+            </div>
+          </div>
+        ))
+      }
+
+      {
+        cta && href && (
+          <div class="relative flex items-end py-32 lg:col-start-4 lg:justify-end lg:pb-48 lg:pl-32">
+            <span aria-hidden="true" class:list={[rule, '-inset-x-(--page-gutter) top-0 h-px lg:hidden']}></span>
+            <span aria-hidden="true" class:list={[rule, 'inset-y-0 left-0 hidden w-px lg:block']}></span>
+            <Button
+              variant="arrow"
+              href={href}
+              target={cta.openInNewTab ? '_blank' : undefined}
+              rel={cta.openInNewTab ? 'noopener noreferrer' : undefined}
+            >
+              {cta.text}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</SectionFrame>

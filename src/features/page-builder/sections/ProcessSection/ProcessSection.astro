@@ -1,0 +1,30 @@
+---
+import { stegaClean } from "@sanity/client/stega";
+import { ProcessSectionQ } from "~/features/page-builder/queries";
+import type { SectionProps } from "~/features/page-builder/types";
+import type { ProcessSectionQResult } from "~/sanity/types";
+import { getDraftModeProps } from "../../../../sanity/lib/draft-mode";
+import { loadQuery } from "../../../../sanity/lib/load-query";
+import Process from "./Process.astro";
+
+type Props = SectionProps;
+
+const { docId, sectionKey } = Astro.props;
+
+const { data: section } = await loadQuery<ProcessSectionQResult>({
+  query: ProcessSectionQ,
+  params: { docId, sectionKey },
+  ...getDraftModeProps(Astro),
+});
+---
+
+{
+  section?.content?.headline && (
+    <Process
+      {...section.content}
+      settings={section.settings}
+      id={stegaClean(section.settings?.hash) ?? undefined}
+      data-page-builder-section="processSection"
+    />
+  )
+}

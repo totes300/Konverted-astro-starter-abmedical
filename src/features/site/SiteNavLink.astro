@@ -10,9 +10,10 @@ type Props = {
   link: LinkFragmentResult;
   animationDelay?: number;
   viewport?: false | { margin?: string };
+  class?: string;
 };
 
-const { link, animationDelay, viewport } = Astro.props;
+const { link, animationDelay, viewport, class: className } = Astro.props;
 
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 // stegaClean: in preview, `link.href` carries invisible stega characters that break strict comparison.
@@ -23,7 +24,7 @@ const isActive = Boolean(href) && pathname === (href.split(/[?#]/)[0]?.replace(/
 <SanityLink
   link={link}
   aria-current={isActive ? "page" : undefined}
-  class={cx("text-body-10 text-white/75 transition-colors duration-200 ease-out hover:text-white", isActive && "text-white")}
+  class={cx("text-body-10 text-white/75 transition-colors duration-200 ease-out hover:text-white", className, isActive && "text-white")}
 >
   <AnimatedText animationDelay={animationDelay} viewport={viewport} class={cx(isActive && "underline underline-offset-4")}>
     {link.text}

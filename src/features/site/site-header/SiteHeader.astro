@@ -1,27 +1,53 @@
 ---
+import Button from "~/components/Button.astro";
+import { safeHref } from "~/features/sanity/link/safe-href";
 import SiteNavLink from "~/features/site/SiteNavLink.astro";
 import type { SiteHeaderQResult } from "~/sanity/types";
 import { getDraftModeProps } from "../../../sanity/lib/draft-mode";
 import { loadQuery } from "../../../sanity/lib/load-query";
 import { SiteHeaderQ } from "./query";
 
+// Overlays the top of the page; the shell offsets the content beneath it unless the first section sits under it.
 const { data: siteHeader } = await loadQuery<SiteHeaderQResult>({ query: SiteHeaderQ, ...getDraftModeProps(Astro) });
 
 const links = siteHeader?.header?.links ?? [];
+const cta = siteHeader?.header?.cta;
+const ctaHref = safeHref(cta?.href);
 ---
 
-{
-  links.length > 0 && (
-    <header class="flex h-(--header-height) shrink-0 items-center">
-      <nav class="mx-auto w-full max-w-(--page-width) px-(--page-gutter)">
-        <ul class="flex gap-24">
-          {links.map((link, i) => (
-            <li>
-              <SiteNavLink link={link} animationDelay={i * 0.1} />
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
-  )
-}
+<header class="absolute inset-x-0 top-0 z-2 h-(--header-height) text-white">
+  <div class="grid h-full grid-cols-[1fr_auto] items-center gap-24 px-(--page-gutter) lg:grid-cols-[1fr_auto_1fr]">
+    <a href="/" aria-label="Home" class="w-fit">
+      <img src="/brand/ab-medical-logo-white.png" alt="AB Medical Technologies" width="153" height="41" class="h-auto w-120 lg:w-153" />
+    </a>
+
+    {
+      links.length > 0 && (
+        <nav aria-label="Main" class="hidden lg:block">
+          <ul class="flex items-center gap-36">
+            {links.map((link, i) => (
+              <li>
+                <SiteNavLink link={link} animationDelay={i * 0.1} class="font-medium text-beige-01 text-body hover:text-white" />
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    <div class="flex justify-end">
+      {
+        cta && ctaHref && (
+          <Button
+            variant="glass"
+            href={ctaHref}
+            target={cta.openInNewTab ? '_blank' : undefined}
+            rel={cta.openInNewTab ? 'noopener noreferrer' : undefined}
+          >
+            {cta.text}
+          </Button>
+        )
+      }
+    </div>
+  </div>
+</header>

@@ -1,0 +1,68 @@
+---
+import CheckList from "~/components/CheckList.astro";
+import type { MediaFragmentResult } from "~/features/sanity/media/fragment";
+import StageHeading from "./StageHeading.astro";
+import StagePhoto from "./StagePhoto.astro";
+
+// One stage of "how we work", in the layout the editor picked. Every layout stacks copy, list, then photos on phones.
+type Props = {
+  number: number;
+  eyebrow?: string | null;
+  headline?: string | null;
+  text?: string | null;
+  items?: string[] | null;
+  layout?: "split" | "gallery" | "centered" | null;
+  media?: MediaFragmentResult | null;
+  secondaryMedia?: MediaFragmentResult | null;
+};
+
+const { number, eyebrow, headline, text, items, layout = "split", media, secondaryMedia } = Astro.props;
+
+const list = items ?? [];
+// The centred layout sets half the list beside the tall photo and half under the second one.
+const half = Math.ceil(list.length / 2);
+const heading = { number, eyebrow, headline, text };
+---
+
+{
+  layout === 'gallery' && (
+    <article class="flex flex-col gap-40 lg:gap-56 lg:pt-54">
+      <div class="grid grid-cols-1 gap-40 lg:grid-cols-[823fr_505fr] lg:items-end lg:gap-32">
+        <StageHeading {...heading} class="lg:max-w-504" />
+        {list.length > 0 && <CheckList items={list} />}
+      </div>
+      <div class="grid grid-cols-1 gap-16 md:grid-cols-[823fr_505fr] lg:gap-32">
+        <StagePhoto media={media} class="aspect-[4/3] md:aspect-auto md:h-480 lg:h-706" />
+        {secondaryMedia && <StagePhoto media={secondaryMedia} class="aspect-[4/5] md:aspect-auto md:h-480 lg:h-706" />}
+      </div>
+    </article>
+  )
+}
+
+{
+  layout === 'centered' && (
+    <article class="flex flex-col gap-40 lg:gap-56">
+      <StageHeading {...heading} align="center" class="mx-auto max-w-524" />
+      <div class="grid grid-cols-1 gap-32 md:grid-cols-2 lg:grid-cols-[385fr_435fr_409fr] lg:gap-48">
+        {half > 0 && <CheckList items={list.slice(0, half)} class="md:col-span-2 lg:col-span-1" />}
+        <StagePhoto media={media} class="aspect-[4/5] lg:aspect-auto lg:h-618" />
+        <div class="flex flex-col gap-32 lg:gap-56">
+          {secondaryMedia && <StagePhoto media={secondaryMedia} class="aspect-[6/5] lg:aspect-auto lg:h-346" />}
+          {list.length > half && <CheckList items={list.slice(half)} />}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+{
+  layout !== 'gallery' && layout !== 'centered' && (
+    <article class="grid grid-cols-1 gap-40 md:grid-cols-2 md:items-center md:gap-48 lg:grid-cols-[596fr_640fr] lg:gap-124">
+      <div class="flex flex-col gap-40 lg:gap-56 lg:py-54 lg:pl-32">
+        <StageHeading {...heading} />
+        {list.length > 0 && <CheckList items={list} />}
+      </div>
+      <StagePhoto media={media} class="aspect-[4/5]" />
+    </article>
+  )
+}

@@ -10,7 +10,15 @@ const { showHeader = true, showFooter = true } = Astro.props;
 
 <div class="flex min-h-svh flex-col">
   <SiteAnnouncement />
-  {showHeader && <SiteHeader />}
-  <main class="flex-1" data-page-out="fade" data-page-in="fade"><slot /></main>
+  <div class="relative isolate flex flex-1 flex-col">
+    {showHeader && <SiteHeader />}
+    <main
+      class:list={['flex-1', showHeader && 'pt-(--header-height) has-[[data-under-header]]:pt-0']}
+      data-page-out="fade"
+      data-page-in="fade"
+    >
+      <slot />
+    </main>
+  </div>
   {showFooter && <SiteFooter />}
 </div>

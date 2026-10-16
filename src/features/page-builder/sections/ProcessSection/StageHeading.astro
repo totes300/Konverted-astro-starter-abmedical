@@ -1,0 +1,27 @@
+---
+import Eyebrow from "~/components/Eyebrow.astro";
+import { cx } from "~/features/style/utils";
+
+// A stage's numbered eyebrow, H3 and lead, shared by every layout so the stages read as one sequence.
+type Props = {
+  number: number;
+  eyebrow?: string | null;
+  headline?: string | null;
+  text?: string | null;
+  align?: "start" | "center";
+  class?: string;
+};
+
+const { number, eyebrow, headline, text, align = "start", class: className } = Astro.props;
+
+const label = [String(number).padStart(2, "0"), eyebrow].filter(Boolean).join(" / ");
+const centered = align === "center";
+---
+
+<div class={cx('flex flex-col gap-36', centered && 'items-center text-center', className)}>
+  <Eyebrow label={label} />
+  <div class="flex flex-col gap-16">
+    <h3 class="whitespace-pre-line text-balance text-heading-3">{headline}</h3>
+    {text && <p class="text-body-lg">{text}</p>}
+  </div>
+</div>

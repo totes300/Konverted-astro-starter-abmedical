@@ -1,0 +1,89 @@
+---
+import Button from "~/components/Button.astro";
+import SectionFrame from "~/features/page-builder/SectionFrame.astro";
+import type { SectionLayoutSettings } from "~/features/page-builder/section-layout";
+import type { LinkFragmentResult } from "~/features/sanity/link/fragment";
+import { safeHref } from "~/features/sanity/link/safe-href";
+import type { MediaFragmentResult } from "~/features/sanity/media/fragment";
+import { cx } from "~/features/style/utils";
+import SanityMedia from "../../../../sanity/media/SanityMedia.astro";
+
+// Full-bleed photo under the site header, framed by a hairline grid, with the headline and one CTA along the bottom.
+type Props = {
+  headline?: string | null;
+  cta?: LinkFragmentResult | null;
+  media?: MediaFragmentResult | null;
+  /** The first section sits under the overlaid site header, owns the page's H1 and the LCP image. */
+  isFirst?: boolean;
+  settings?: SectionLayoutSettings | null;
+  id?: string;
+  class?: string;
+  [key: `data-${string}`]: string | undefined;
+};
+
+const { headline, cta, media, isFirst = false, settings, id, class: className, ...data } = Astro.props;
+
+const Heading = isFirst ? "h1" : "h2";
+const headlineLines = (headline ?? "").split("\n");
+const href = safeHref(cta?.href);
+const hairline = "pointer-events-none absolute bg-white/25 motion-safe:group-data-intro/hero:scale-0";
+---
+
+<SectionFrame
+  settings={settings}
+  flush
+  id={id}
+  class={cx('relative isolate flex min-h-svh flex-col justify-end overflow-hidden bg-gray-02 text-white', className)}
+  data-under-header={isFirst ? '' : undefined}
+  {...data}
+>
+  <hero-intro data-intro data-viewport-disabled class="group/hero contents">
+    <div class="-z-1 absolute inset-0">
+      {media && <SanityMedia media={media} priority={isFirst} class="size-full object-cover" />}
+    </div>
+    <div aria-hidden="true" class="-z-1 absolute inset-x-0 bottom-0 h-2/3 bg-hero-fade lg:h-332"></div>
+
+    {isFirst && <span aria-hidden="true" data-hero-line="x" class:list={[hairline, 'inset-x-0 top-(--header-height) h-px origin-left']}></span>}
+
+    <div class="relative grid grid-cols-1 lg:grid-cols-[3fr_1fr]">
+      <span aria-hidden="true" data-hero-line="x" class:list={[hairline, '-inset-x-(--page-gutter) top-0 h-px origin-left']}></span>
+      <span aria-hidden="true" data-hero-line="x" class:list={[hairline, '-inset-x-(--page-gutter) bottom-0 h-px origin-right']}></span>
+
+      <div class="pt-24 pb-32 lg:pt-24 lg:pr-124 lg:pb-48">
+        <Heading class="text-balance text-display motion-safe:group-data-intro/hero:opacity-0" data-hero-headline>
+          {headlineLines.map((line, index) => (index === 0 ? line : <Fragment><br />{line}</Fragment>))}
+        </Heading>
+      </div>
+
+      {
+        cta && href && (
+          <div class="relative flex items-end justify-start py-24 lg:justify-end lg:pt-24 lg:pb-48 lg:pl-32">
+            <span aria-hidden="true" data-hero-line="x" class:list={[hairline, '-inset-x-(--page-gutter) top-0 h-px origin-left lg:hidden']}></span>
+            <span
+              aria-hidden="true"
+              data-hero-line="y"
+              class:list={[hairline, 'inset-y-0 left-0 hidden w-px origin-top lg:block']}
+            ></span>
+            <div data-hero-cta-mask class="overflow-clip motion-safe:group-data-intro/hero:opacity-0">
+              <div data-hero-cta>
+                <Button
+                  variant="arrow"
+                  href={href}
+                  target={cta.openInNewTab ? '_blank' : undefined}
+                  rel={cta.openInNewTab ? 'noopener noreferrer' : undefined}
+                  download={cta.canDownload ? '' : undefined}
+                >
+                  {cta.text}
+                </Button>
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </hero-intro>
+</SectionFrame>
+
+<script>
+  import "./HeroElement";
+</script>

@@ -1,0 +1,31 @@
+---
+import { stegaClean } from "@sanity/client/stega";
+import { HeroSectionQ } from "~/features/page-builder/queries";
+import type { SectionProps } from "~/features/page-builder/types";
+import type { HeroSectionQResult } from "~/sanity/types";
+import { getDraftModeProps } from "../../../../sanity/lib/draft-mode";
+import { loadQuery } from "../../../../sanity/lib/load-query";
+import Hero from "./Hero.astro";
+
+type Props = SectionProps;
+
+const { docId, sectionKey, isFirst = false } = Astro.props;
+
+const { data: section } = await loadQuery<HeroSectionQResult>({
+  query: HeroSectionQ,
+  params: { docId, sectionKey },
+  ...getDraftModeProps(Astro),
+});
+---
+
+{
+  section?.content?.headline && (
+    <Hero
+      {...section.content}
+      isFirst={isFirst}
+      settings={section.settings}
+      id={stegaClean(section.settings?.hash) ?? undefined}
+      data-page-builder-section="heroSection"
+    />
+  )
+}

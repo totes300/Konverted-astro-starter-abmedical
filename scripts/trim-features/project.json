@@ -5,6 +5,6 @@
     "cutFrom": null
   },
   "features": {},
-  "sections": [],
+  "sections": ["CapabilitiesSection", "HeroSection", "ProcessSection"],
   "documentTypes": []
 }
