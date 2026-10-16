@@ -1,0 +1,46 @@
+---
+import { getImageSrc } from "~/features/sanity/media/image/utils";
+import { cssAspectRatio, safeVideoSrc } from "~/features/sanity/media/utils";
+import { type MediaValue, resolveVideoOptions, type VideoFileFragmentResult, type VideoProps } from "./types";
+import VideoPlayer from "./VideoPlayer.astro";
+
+// Plain <video> for uploaded files (`videoFile`); another source, such as an external URL, is passed in.
+type Props = {
+  media: MediaValue;
+  source?: VideoFileFragmentResult | null;
+  width?: number;
+  priority?: boolean;
+  class?: string;
+  videoProps?: VideoProps;
+};
+
+const { media, source = media.videoFile, priority = false, class: className, videoProps } = Astro.props;
+
+// A source URL arrives as stored, and the Studio's http(s) rule never runs on an API write.
+const src = safeVideoSrc(source?.url);
+const mimeType = media.videoFile?.mimeType ?? undefined;
+const options = resolveVideoOptions(media, videoProps);
+const aspectRatio = cssAspectRatio(media.aspectRatio) ?? cssAspectRatio(source?.dimensions?.aspectRatio);
+
+// The cover is required, so there is always a poster and a natural ratio to reserve the box before anything loads.
+const poster = media.videoCover?._id ? getImageSrc(media.videoCover, { width: 960, aspectRatio }) : undefined;
+---
+
+{
+  src && (
+    <VideoPlayer autoplay={options.autoPlay} toggle={options.noControls}>
+      <video
+        class={className}
+        preload={priority ? 'auto' : 'metadata'}
+        poster={poster}
+        muted={options.muted}
+        loop={options.loop}
+        controls={!options.noControls}
+        playsinline
+        style={aspectRatio ? { aspectRatio: String(aspectRatio) } : undefined}
+      >
+        <source src={src} type={mimeType} />
+      </video>
+    </VideoPlayer>
+  )
+}

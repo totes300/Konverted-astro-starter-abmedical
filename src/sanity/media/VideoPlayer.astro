@@ -1,0 +1,41 @@
+---
+import { cx } from "~/features/style/utils";
+
+// Hosts the one video it wraps; `contents` leaves the box to the video, so the caller's classes still size it.
+// The element owns playback (see `VideoPlayerElement.ts`), so with no JS an autoplaying video rests on its poster.
+type Props = {
+  autoplay?: boolean;
+  toggle?: boolean;
+};
+
+const { autoplay = false, toggle = false } = Astro.props;
+
+const PLAY_LABEL = "Play video";
+const PAUSE_LABEL = "Pause video";
+
+// A video with no controls of its own toggles on a click; keyboard and assistive tech reach the same toggle as an unseen
+// button, whose focus is drawn on the video, inside its box so a clipping parent cannot hide it.
+const FOCUS_ON_VIDEO =
+  "[&:has(>[data-video-toggle]:focus-visible)>:first-child]:outline-2 [&:has(>[data-video-toggle]:focus-visible)>:first-child]:-outline-offset-2 [&:has(>[data-video-toggle]:focus-visible)>:first-child]:outline-[#ff9100]";
+---
+
+<video-player class={cx('contents', toggle && FOCUS_ON_VIDEO)} data-autoplay={autoplay ? '' : undefined}>
+  <slot />
+  {
+    toggle && (
+      <button
+        type="button"
+        hidden
+        data-video-toggle
+        data-label-play={PLAY_LABEL}
+        data-label-pause={PAUSE_LABEL}
+        aria-label={autoplay ? PAUSE_LABEL : PLAY_LABEL}
+        class="sr-only"
+      ></button>
+    )
+  }
+</video-player>
+
+<script>
+  import "./VideoPlayerElement";
+</script>

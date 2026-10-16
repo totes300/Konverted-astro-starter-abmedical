@@ -1,0 +1,175 @@
+# Structured Data (JSON-LD)
+
+Structured data helps search engines and AI understand your content. JSON-LD is the recommended format.
+
+## Why Structured Data Matters
+
+- **Rich snippets:** Enhanced search result appearance
+- **Knowledge panels:** Featured information boxes
+- **AI training:** Better content understanding
+- **Voice search:** Answer selection for voice queries
+
+## Common Schema Types
+
+### Article / Blog Post
+
+```typescript
+import { Article, WithContext } from 'schema-dts'
+
+const articleSchema: WithContext<Article> = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.excerpt,
+  image: post.image?.url,
+  datePublished: post.publishedAt,
+  dateModified: post.updatedAt,
+  author: {
+    '@type': 'Person',
+    name: post.author.name,
+    url: post.author.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Your Company',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://example.com/logo.png',
+    },
+  },
+}
+```
+
+### FAQ Page
+
+```typescript
+import { FAQPage, WithContext } from 'schema-dts'
+
+const faqSchema: WithContext<FAQPage> = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer, // Plain text, use pt::text() in GROQ
+    },
+  })),
+}
+```
+
+### Organization
+
+```typescript
+import { Organization, WithContext } from 'schema-dts'
+
+const orgSchema: WithContext<Organization> = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Your Company',
+  url: 'https://example.com',
+  logo: 'https://example.com/logo.png',
+  sameAs: ['https://twitter.com/company', 'https://linkedin.com/company/company'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+1-555-555-5555',
+    contactType: 'customer service',
+  },
+}
+```
+
+### Product
+
+```typescript
+import { Product, WithContext } from 'schema-dts'
+
+const productSchema: WithContext<Product> = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.description,
+  image: product.images,
+  offers: {
+    '@type': 'Offer',
+    price: product.price,
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+  },
+  aggregateRating: product.rating
+    ? {
+        '@type': 'AggregateRating',
+        ratingValue: product.rating.average,
+        reviewCount: product.rating.count,
+      }
+    : undefined,
+}
+```
+
+### Breadcrumb
+
+```typescript
+import { BreadcrumbList, WithContext } from 'schema-dts'
+
+const breadcrumbSchema: WithContext<BreadcrumbList> = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((crumb, index) => ({
+    '@type': 'ListItem',
+    position: index + 1, // schema.org positions are 1-based
+    name: crumb.title,
+    item: `https://example.com${crumb.path}`,
+  })),
+}
+```
+
+## Combining Multiple Schemas (@graph)
+
+Real-world pages often need multiple schema types. Use `@graph` to combine them. The `@context` is defined once at the top level, so omit it from individual schema generators when used inside `@graph`:
+
+```typescript
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    generateArticleSchema(post), // No @context needed here
+    generateBreadcrumbSchema(breadcrumbs),
+    generateOrganizationSchema(),
+  ],
+}
+```
+
+## Implementation in this repo
+
+Public pages have no React. The builders live in `src/features/site/seo/structured-data.ts` (`webPageLd`, `blogPostingLd`, `breadcrumbLd`, `organizationLd`, ...), a route combines them with `jsonLdGraph()` in its frontmatter, and `src/components/JsonLd.astro` renders the graph:
+
+```astro
+---
+import JsonLd from "~/components/JsonLd.astro";
+import { breadcrumbLd, jsonLdGraph, webPageLd } from "~/features/site/seo/structured-data";
+
+const pageJsonLd = jsonLdGraph([
+  webPageLd({ name: seoProps.title, url: canonical, description: seoProps.description, siteUrl: PUBLIC_SITE_URL }),
+  breadcrumbLd([{ name: "Home", url: absoluteUrl("/") }, { name: page.title ?? "", url: canonical }]),
+]);
+---
+
+<JsonLd data={pageJsonLd} />
+```
+
+`JsonLd.astro` stega-cleans the whole graph and escapes `<`, so a CMS string holding `</script>` cannot close the tag. Add a new schema type as a builder in `structured-data.ts` rather than an inline object in a route. `schema-dts` is not installed; the builders return the plain `JsonLd` type, and `jsonLdGraph()` takes `object[]` so typed nodes can mix in if you add it.
+
+## GROQ for Plain Text
+
+Structured data often needs plain text, not rich text:
+
+```groq
+*[_type == "faq"]{
+  question,
+  "answer": pt::text(answerRichText)  // Convert Portable Text to plain string
+}
+```
+
+## Testing Tools
+
+- [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [Schema.org Validator](https://validator.schema.org/)

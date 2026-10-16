@@ -1,0 +1,31 @@
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+
+# Build
+dist/
+.astro/
+
+# Dataset exports (every document, secrets and submissions included)
+*.tar.gz
+/backups
+
+# Starter content, the one archive that is committed
+!/seed/seed-dataset.tar.gz
+
+# Vercel (build output + linked project metadata)
+.vercel

@@ -1,0 +1,45 @@
+---
+import { cx } from "~/features/style/utils";
+import { createResponsiveDirection, createResponsiveOverflow } from "./utils";
+
+// Wraps its slotted media in a clipping window whose content scroll-parallaxes. `overflow` (slack per edge, px)
+// and `direction` are responsive shorthands, e.g. "60 lg:120" and "y lg:x".
+type Props = {
+  overflow?: string | number;
+  direction?: string;
+  class?: string;
+  style?: astroHTML.JSX.CSSProperties;
+};
+
+const { overflow = "60 lg:120", direction = "y", class: className, style } = Astro.props;
+
+const { styles: overflowStyles, classes: overflowClasses } = createResponsiveOverflow(overflow);
+const { styles: directionStyles, classes: directionClasses } = createResponsiveDirection(direction);
+
+const SLACK_X = "var(--parallax-overflow) * var(--parallax-x)";
+const SLACK_Y = "var(--parallax-overflow) * (1 - var(--parallax-x))";
+
+// Oversized and pulled back by one overflow on the active axis, so the pre-scroll position is centred with no flash.
+const innerStyle: astroHTML.JSX.CSSProperties = {
+  width: `calc(100% + 2 * ${SLACK_X})`,
+  left: `calc(-1 * ${SLACK_X})`,
+  height: `calc(100% + 2 * ${SLACK_Y})`,
+  top: `calc(-1 * ${SLACK_Y})`,
+};
+---
+
+<inner-parallax
+  class={cx("relative block overflow-hidden", overflowClasses, directionClasses, className)}
+  style={{ ...overflowStyles, ...directionStyles, ...style }}
+>
+  <div data-parallax-inner class="absolute inset-0" style={innerStyle}>
+    <slot />
+  </div>
+</inner-parallax>
+
+<script>
+  import { lazyCustomElement } from "~/lib/lazy-hydrate";
+
+  // Nothing to do until a parallax nears the viewport, so its module stays out of the initial load.
+  lazyCustomElement("inner-parallax", () => import("./InnerParallaxElement"));
+</script>

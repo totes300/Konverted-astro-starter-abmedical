@@ -1,0 +1,11 @@
+---
+import SanityNativeVideo from "./SanityNativeVideo.astro";
+import type { MediaValue, VideoProps } from "./types";
+
+// An external video URL plays in the same <video> as an uploaded file.
+type Props = { media: MediaValue; width?: number; priority?: boolean; class?: string; videoProps?: VideoProps };
+
+const { media } = Astro.props;
+---
+
+<SanityNativeVideo {...Astro.props} source={media.videoUrl} />
