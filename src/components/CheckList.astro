@@ -1,0 +1,23 @@
+---
+import Icon from "~/components/Icon/Icon.astro";
+import { cx } from "~/features/style/utils";
+
+// A capability list: hairline-separated rows, each led by the filled check-circle.
+type Props = {
+  items: string[];
+  class?: string;
+};
+
+const { items, class: className } = Astro.props;
+---
+
+<ul class={cx("flex w-full flex-col text-black-01", className)}>
+  {
+    items.map((item) => (
+      <li class="flex items-center gap-12 border-black-01/15 border-t py-12 text-body">
+        <Icon name="check-circle" class="size-20" />
+        {item}
+      </li>
+    ))
+  }
+</ul>

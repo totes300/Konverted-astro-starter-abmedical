@@ -1,0 +1,11 @@
+---
+// A group heading inside a chapter (e.g. "Core" colours), with an optional one-line description.
+type Props = { title: string; description?: string };
+
+const { title, description } = Astro.props;
+---
+
+<div class="mb-24 flex flex-col gap-4">
+  <h3 class="text-heading-4">{title}</h3>
+  {description && <p class="max-w-704 text-black-01/50 text-body">{description}</p>}
+</div>

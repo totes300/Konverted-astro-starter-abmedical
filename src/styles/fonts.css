@@ -6,6 +6,24 @@
  */
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
+@import "@fontsource/azeret-mono/400.css";
+
+/* AB Medical brand face (licensed, Pangram Pangram). Only the two weights the design uses ship. */
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/pp-neue-montreal/PPNeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/pp-neue-montreal/PPNeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "Geist Pixel Square";
@@ -48,6 +66,8 @@
 }
 
 :root {
+  --font-pp-neue-montreal: "PP Neue Montreal";
+  --font-azeret-mono: "Azeret Mono";
   --font-geist-sans: "Geist Variable";
   --font-geist-mono: "Geist Mono Variable";
   --font-geist-pixel-square: "Geist Pixel Square", "Geist Mono Variable";

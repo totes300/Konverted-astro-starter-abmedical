@@ -10,7 +10,7 @@ type Props = {
   download?: string | boolean;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  variant?: "primary" | "underline";
+  variant?: "primary" | "underline" | "arrow" | "glass";
   class?: string;
   /** Set it when the label the reader hears is not the label on screen, as on a multi-state submit button. */
   "aria-label"?: string;
@@ -40,23 +40,46 @@ const base =
 const variants = {
   primary: "h-44 rounded-4 bg-white px-24 text-black hover:bg-white/80",
   underline: "text-white underline underline-offset-4",
+  arrow: "group gap-16 font-sans text-button text-white",
+  glass:
+    "gap-4 rounded-4 bg-black-01/25 py-12 pr-20 pl-16 font-sans text-button-sm text-white backdrop-blur-16 hover:bg-black-01/40",
 };
 
 // tailwind-merge so caller classes reliably beat the defaults (e.g. a custom height or color).
 const classes = cx(base, variants[variant], className);
+const leadingArrow = variant === "glass";
+const arrowTile = variant === "arrow";
 ---
 
 {
   href ? (
     <a href={href} target={target} rel={rel} download={download} class={classes} aria-label={ariaLabel} {...data}>
       <slot name="left-icon" />
+      {leadingArrow && <span aria-hidden="true">→</span>}
       <slot />
+      {arrowTile && (
+        <span
+          aria-hidden="true"
+          class="inline-flex size-32 items-center justify-center rounded-4 bg-white text-navy-blue transition-transform duration-200 ease-out group-hover:translate-x-4 motion-reduce:transition-none"
+        >
+          →
+        </span>
+      )}
       <slot name="right-icon" />
     </a>
   ) : (
     <button type={type} disabled={disabled} class={classes} aria-label={ariaLabel} {...data}>
       <slot name="left-icon" />
+      {leadingArrow && <span aria-hidden="true">→</span>}
       <slot />
+      {arrowTile && (
+        <span
+          aria-hidden="true"
+          class="inline-flex size-32 items-center justify-center rounded-4 bg-white text-navy-blue transition-transform duration-200 ease-out group-hover:translate-x-4 motion-reduce:transition-none"
+        >
+          →
+        </span>
+      )}
       <slot name="right-icon" />
     </button>
   )

@@ -1,0 +1,22 @@
+---
+import { cx } from "~/features/style/utils";
+
+// The section eyebrow: an 8px square marker plus an uppercase Azeret Mono label. `tone` follows the ground it sits on.
+type Props = {
+  label: string;
+  tone?: "light" | "dark";
+  class?: string;
+};
+
+const { label, tone = "light", class: className } = Astro.props;
+
+const tones = {
+  light: { marker: "bg-blue-bright", text: "text-black-01/50" },
+  dark: { marker: "bg-blue-02", text: "text-white" },
+};
+---
+
+<p class={cx("flex w-fit items-center gap-10 font-label text-label uppercase", tones[tone].text, className)}>
+  <span aria-hidden="true" class={cx("size-8 shrink-0", tones[tone].marker)}></span>
+  {label}
+</p>

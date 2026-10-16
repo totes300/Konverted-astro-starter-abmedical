@@ -1,0 +1,607 @@
+---
+import Button from "~/components/Button.astro";
+import CheckList from "~/components/CheckList.astro";
+import Eyebrow from "~/components/Eyebrow.astro";
+import GuideSection from "~/features/style-guide/GuideSection.astro";
+import GuideSubhead from "~/features/style-guide/GuideSubhead.astro";
+import {
+  BLACK_ALPHA,
+  BUILT_SECTIONS,
+  CHANGELOG,
+  COLOR_GROUPS,
+  FIGMA_FILE_URL,
+  figmaNodeUrl,
+  RADII,
+  SECTION_RHYTHM,
+  SPACE_SCALE,
+  TYPE_SCALE,
+  WHITE_ALPHA,
+} from "~/features/style-guide/style-guide";
+import Web from "~/layouts/Web.astro";
+
+const chapters = [
+  { id: "colors", title: "Colors" },
+  { id: "typography", title: "Typography" },
+  { id: "spacing", title: "Spacing & layout" },
+  { id: "shape", title: "Radii, borders & effects" },
+  { id: "primitives", title: "Primitives" },
+  { id: "decoration", title: "Decoration" },
+  { id: "imagery", title: "Imagery & illustration" },
+  { id: "sections", title: "Sections built" },
+  { id: "changelog", title: "Changelog" },
+];
+
+const latest = CHANGELOG[0];
+const sectionCount = BUILT_SECTIONS.length;
+const chip = "rounded-full border border-black-01/15 px-8 py-4 font-label text-black-01/75 text-body-sm";
+const codeClass = "font-mono text-black-01 text-body-sm";
+const panel = "relative isolate flex min-h-200 items-center justify-center overflow-hidden rounded-16 p-32";
+const checkItems = [
+  "Mechanical and electromechanical engineering",
+  "Concept design and product architecture",
+  "Design verification and design validation",
+];
+---
+
+<Web title="Style guide · AB Medical" description="The AB Medical design system: tokens, primitives and decoration." noindex>
+  <main class="w-full">
+    <div class="min-h-full bg-white text-black-01">
+      <header class="relative isolate overflow-hidden bg-navy-glow text-white">
+        <img
+          src="/brand/logo-mark-blurred.svg"
+          alt=""
+          width="550"
+          height="555"
+          class="-z-1 -left-120 absolute top-40 w-440 -skew-x-20 rotate-38 scale-y-94 opacity-80"
+        />
+        <div class="mx-auto flex w-full max-w-(--page-width) flex-col gap-64 px-(--page-gutter) pt-32 pb-64">
+          <div class="flex items-center justify-between border-white/25 border-b pb-16">
+            <img src="/brand/ab-medical-logo-white.png" alt="AB Medical Technologies" width="1024" height="273" class="h-40 w-auto" />
+            <a href={FIGMA_FILE_URL} target="_blank" rel="noopener noreferrer" class="font-label text-label text-white/75 uppercase hover:text-white">
+              Figma ↗
+            </a>
+          </div>
+          <div class="flex flex-col gap-24">
+            <Eyebrow label="Design system" tone="dark" />
+            <h1 class="text-display">Style guide</h1>
+            <p class="max-w-704 text-body-xl text-white/75">
+              The living reference for the AB Medical site. Every token here is a real Tailwind utility; every primitive is the component the
+              sections render. Updated each time a new Figma section is built.
+            </p>
+          </div>
+          <dl class="grid grid-cols-2 gap-24 border-white/25 border-t pt-24 md:grid-cols-4">
+            <div class="flex flex-col gap-8">
+              <dt class="font-label text-label text-white/50 uppercase">Version</dt>
+              <dd class="text-body-lg">v{latest.version}</dd>
+            </div>
+            <div class="flex flex-col gap-8">
+              <dt class="font-label text-label text-white/50 uppercase">Updated</dt>
+              <dd class="text-body-lg">{latest.date}</dd>
+            </div>
+            <div class="flex flex-col gap-8">
+              <dt class="font-label text-label text-white/50 uppercase">Covers</dt>
+              <dd class="text-body-lg">Figma sections 1–{sectionCount}</dd>
+            </div>
+            <div class="flex flex-col gap-8">
+              <dt class="font-label text-label text-white/50 uppercase">Design frame</dt>
+              <dd class="text-body-lg">1440 · column 1360</dd>
+            </div>
+          </dl>
+        </div>
+      </header>
+
+      <div class="mx-auto flex w-full max-w-(--page-width) flex-col gap-48 px-(--page-gutter) pt-48 lg:flex-row lg:gap-64">
+        <nav aria-label="Style guide chapters" class="lg:sticky lg:top-24 lg:h-fit lg:w-220 lg:shrink-0">
+          <ol class="scrollbar-invisible flex gap-8 overflow-x-auto lg:flex-col lg:gap-4">
+            {
+              chapters.map((chapter, index) => (
+                <li class="shrink-0">
+                  <a
+                    href={`#${chapter.id}`}
+                    class="flex items-baseline gap-12 rounded-4 px-8 py-6 text-black-01/75 text-body transition-colors hover:bg-black-01/10 hover:text-black-01"
+                  >
+                    <span class="font-label text-black-01/50 text-body-sm">{String(index + 1).padStart(2, "0")}</span>
+                    {chapter.title}
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </nav>
+
+        <div class="min-w-0 flex-1">
+          <GuideSection id="colors" number="01" title="Colors" intro="Named after the Figma variables. Figma's alpha variables (white-75, black-01-15, …) are Tailwind opacity modifiers on the base token.">
+            <div class="flex flex-col gap-64">
+              {
+                COLOR_GROUPS.map((group) => (
+                  <div>
+                    <GuideSubhead title={group.title} description={group.description} />
+                    <div class="grid grid-cols-1 gap-16 sm:grid-cols-2 xl:grid-cols-3">
+                      {group.swatches.map((swatch) => (
+                        <article class="overflow-hidden rounded-16 border border-black-01/15">
+                          <div class:list={["flex h-120 items-end p-16", swatch.swatchClass, swatch.dark ? "text-white" : "text-black-01"]}>
+                            <span class="font-label text-label uppercase">{swatch.hex}</span>
+                          </div>
+                          <div class="flex flex-col gap-8 p-16">
+                            <div class="flex items-baseline justify-between gap-8">
+                              <h4 class="font-medium text-body-lg">{swatch.name}</h4>
+                              <code class={codeClass}>{swatch.token}</code>
+                            </div>
+                            <p class="text-black-01/50 text-body-sm">Figma: {swatch.figma}</p>
+                            <p class="text-body">{swatch.usage}</p>
+                            <div class="flex flex-wrap gap-4 pt-4">
+                              {swatch.usedIn.length > 0 ? swatch.usedIn.map((ref) => <span class={chip}>{ref}</span>) : <span class={chip}>Figma only</span>}
+                            </div>
+                          </div>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              }
+
+              <div>
+                <GuideSubhead title="Opacity ramps" description="Text and hairlines take their color from white or black-01 at fixed opacities. Use the modifier, never a new hex." />
+                <div class="grid grid-cols-1 gap-16 lg:grid-cols-2">
+                  <div class="flex flex-col gap-12 rounded-16 bg-ink p-24">
+                    {
+                      WHITE_ALPHA.map((step) => (
+                        <div class="flex items-center gap-16">
+                          <span class:list={["size-40 shrink-0 rounded-4 border border-white/25", step.swatchClass]} />
+                          <span class:list={["flex-1 text-body-lg", step.textClass]}>{step.usage}</span>
+                          <code class="font-mono text-body-sm text-white/50">{step.label}</code>
+                        </div>
+                      ))
+                    }
+                  </div>
+                  <div class="flex flex-col gap-12 rounded-16 border border-black-01/15 p-24">
+                    {
+                      BLACK_ALPHA.map((step) => (
+                        <div class="flex items-center gap-16">
+                          <span class:list={["size-40 shrink-0 rounded-4 border border-black-01/15", step.swatchClass]} />
+                          <span class:list={["flex-1 text-body-lg", step.textClass]}>{step.usage}</span>
+                          <code class="font-mono text-black-01/50 text-body-sm">{step.label}</code>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <GuideSubhead title="Gradients" description="Two brand grounds, each a utility in src/styles/decorations.css." />
+                <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+                  <article class="overflow-hidden rounded-16 border border-black-01/15">
+                    <div class="relative h-200 bg-gray-02">
+                      <img src="/brand/photo-lab-technician.jpg" alt="" width="1024" height="689" class="absolute inset-0 size-full object-cover" />
+                      <div class="absolute inset-x-0 bottom-0 h-3/4 bg-hero-fade" />
+                    </div>
+                    <div class="flex flex-col gap-8 p-16">
+                      <div class="flex items-baseline justify-between gap-8">
+                        <h4 class="font-medium text-body-lg">Hero fade</h4>
+                        <code class={codeClass}>bg-hero-fade</code>
+                      </div>
+                      <p class="text-body">Linear, bottom → top: ink solid to 41%, then into transparent navy. Sits over photography wherever text overlaps it.</p>
+                    </div>
+                  </article>
+                  <article class="overflow-hidden rounded-16 border border-black-01/15">
+                    <div class="h-200 bg-navy-glow" />
+                    <div class="flex flex-col gap-8 p-16">
+                      <div class="flex items-baseline justify-between gap-8">
+                        <h4 class="font-medium text-body-lg">Navy glow</h4>
+                        <code class={codeClass}>bg-navy-glow</code>
+                      </div>
+                      <p class="text-body">Radial from the bottom-left: navy-800 → navy-900 (28%) → ink (57%). The dark section ground.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="typography" number="02" title="Typography" intro="Two families: PP Neue Montreal for everything read, Azeret Mono for eyebrow labels. Sizes are fluid from 375px up to the Figma value at 1440px.">
+            <div class="flex flex-col gap-64">
+              <div class="grid grid-cols-1 gap-16 xl:grid-cols-3">
+                <article class="flex flex-col gap-24 rounded-16 bg-ink p-24 text-white xl:col-span-2">
+                  <div class="flex items-start justify-between gap-16">
+                    <div class="flex flex-col gap-4">
+                      <h3 class="text-heading-4">PP Neue Montreal</h3>
+                      <p class="text-body text-white/50">Pangram Pangram · licensed · self-hosted woff2</p>
+                    </div>
+                    <code class="font-mono text-body-sm text-white/50">font-sans</code>
+                  </div>
+                  <p class="text-[clamp(6rem,14vw,11.25rem)] leading-none">Aa</p>
+                  <div class="grid grid-cols-1 gap-16 border-white/25 border-t pt-16 sm:grid-cols-2">
+                    <div class="flex flex-col gap-4">
+                      <span class="font-label text-label text-white/50 uppercase">Regular 400</span>
+                      <span class="text-body-xl">ABCDEFGHIJKLM nopqrstuvwxyz 0123456789 &amp; → ©</span>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                      <span class="font-label text-label text-white/50 uppercase">Medium 500</span>
+                      <span class="font-medium text-body-xl">ABCDEFGHIJKLM nopqrstuvwxyz 0123456789 &amp; → ©</span>
+                    </div>
+                  </div>
+                </article>
+                <div class="grid grid-cols-1 gap-16 md:grid-cols-2 xl:grid-cols-1">
+                  <article class="flex flex-col gap-16 rounded-16 border border-black-01/15 p-24">
+                    <div class="flex items-start justify-between gap-16">
+                      <div class="flex flex-col gap-4">
+                        <h3 class="text-heading-4">Azeret Mono</h3>
+                        <p class="text-black-01/50 text-body">Google Fonts · 400 only</p>
+                      </div>
+                      <code class={codeClass}>font-label</code>
+                    </div>
+                    <p class="font-label text-heading-3">Aa</p>
+                    <p class="font-label text-label uppercase">Design &amp; Development</p>
+                  </article>
+                  <article class="flex flex-col gap-8 rounded-16 border border-black-01/25 border-dashed p-24">
+                    <span class="font-label text-black-01/50 text-label uppercase">Substituted</span>
+                    <h3 class="font-medium text-body-lg">DeLonghi Sans</h3>
+                    <p class="text-black-01/75 text-body">
+                      Figma sets the hero nav links in DeLonghi Sans, De'Longhi's corporate face. It is not licensed for this brand, so the nav uses PP
+                      Neue Montreal Medium at the same size. Confirm with design.
+                    </p>
+                  </article>
+                </div>
+              </div>
+
+              <div>
+                <GuideSubhead title="Type scale" description="Desktop / mobile size, then line height and tracking. Rows marked Figma only are defined variables no built section uses yet." />
+                <div class="flex flex-col">
+                  {
+                    TYPE_SCALE.map((style) => (
+                      <article class="grid grid-cols-1 gap-16 border-black-01/15 border-t py-24 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-32">
+                        <p class:list={["min-w-0 break-words", style.specimenClass]}>{style.sample}</p>
+                        <div class="flex flex-col gap-8">
+                          <div class="flex items-baseline justify-between gap-8">
+                            <h4 class="font-medium text-body">{style.name}</h4>
+                            <span class="text-black-01/50 text-body-sm">{style.figma}</span>
+                          </div>
+                          <code class={codeClass}>{style.token}</code>
+                          <dl class="grid grid-cols-4 gap-8 text-body-sm">
+                            <div>
+                              <dt class="text-black-01/50">Size</dt>
+                              <dd>{style.size}</dd>
+                            </div>
+                            <div>
+                              <dt class="text-black-01/50">Leading</dt>
+                              <dd>{style.lineHeight}</dd>
+                            </div>
+                            <div>
+                              <dt class="text-black-01/50">Tracking</dt>
+                              <dd>{style.tracking}</dd>
+                            </div>
+                            <div>
+                              <dt class="text-black-01/50">Weight</dt>
+                              <dd>{style.weight}</dd>
+                            </div>
+                          </dl>
+                          <div class="flex flex-wrap gap-4">
+                            {style.usedIn.length > 0 ? style.usedIn.map((ref) => <span class={chip}>{ref}</span>) : <span class={chip}>Figma only</span>}
+                          </div>
+                          {style.note && <p class="text-black-01/75 text-body-sm">{style.note}</p>}
+                        </div>
+                      </article>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="spacing" number="03" title="Spacing & layout" intro="The spacing scale is 1 unit = 1px (mb-16 is 16px), so every Figma value maps to a utility directly. Below are the values the design actually uses.">
+            <div class="flex flex-col gap-64">
+              <div>
+                <GuideSubhead title="Layout grid" description="Desktop frame 1440px; content column 1360px (max-w-(--page-width)); 40px gutter (px-(--page-gutter), 16px on mobile); 32px inner padding inside full-bleed sections." />
+                <div class="rounded-16 bg-ink p-16 text-white">
+                  <div class="flex items-stretch gap-0 rounded-8 border border-white/25 border-dashed">
+                    <div class="flex w-[2.78%] min-w-24 items-center justify-center bg-blue-02/40 py-48">
+                      <span class="-rotate-90 whitespace-nowrap font-label text-body-sm">40</span>
+                    </div>
+                    <div class="flex flex-1 flex-col gap-8 bg-white/10 px-16 py-48 text-center">
+                      <span class="text-heading-4">1360</span>
+                      <span class="font-label text-label text-white/50 uppercase">content column</span>
+                    </div>
+                    <div class="flex w-[2.78%] min-w-24 items-center justify-center bg-blue-02/40 py-48">
+                      <span class="-rotate-90 whitespace-nowrap font-label text-body-sm">40</span>
+                    </div>
+                  </div>
+                  <p class="pt-12 text-center font-label text-label text-white/50 uppercase">1440 frame</p>
+                </div>
+              </div>
+
+              <div>
+                <GuideSubhead title="Section rhythm" description="Vertical space between sections, read off the Figma spacer instances." />
+                <div class="flex flex-wrap items-end gap-32">
+                  {
+                    SECTION_RHYTHM.map((step) => (
+                      <div class="flex w-200 flex-col gap-12">
+                        <div class="flex flex-col overflow-hidden rounded-8 border border-black-01/15">
+                          <div class="h-24 bg-black-01/10" />
+                          <div class:list={["bg-blue-bright/20", step.heightClass]} />
+                          <div class="h-24 bg-black-01/10" />
+                        </div>
+                        <span class="text-heading-4">{step.value}</span>
+                        <span class="text-black-01/75 text-body-sm">{step.usage}</span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+
+              <div>
+                <GuideSubhead title="Spacing in use" />
+                <div class="flex flex-col">
+                  {
+                    SPACE_SCALE.map((step) => (
+                      <div class="grid grid-cols-[48px_140px_minmax(0,1fr)] items-center gap-16 border-black-01/15 border-t py-12">
+                        <span class="font-label text-label">{step.value}</span>
+                        <span class:list={["h-12 rounded-4 bg-blue-bright", step.widthClass]} />
+                        <span class="text-black-01/75 text-body">{step.usage}</span>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="shape" number="04" title="Radii, borders & effects">
+            <div class="grid grid-cols-1 gap-48 lg:grid-cols-3">
+              <div>
+                <GuideSubhead title="Radii" />
+                <div class="flex flex-col gap-16">
+                  {
+                    RADII.map((radius) => (
+                      <div class="flex items-center gap-16">
+                        <span class:list={["size-64 shrink-0 border border-black-01/25 bg-black-01/10", radius.boxClass]} />
+                        <div class="flex flex-col gap-4">
+                          <code class={codeClass}>{radius.token}</code>
+                          <span class="text-black-01/75 text-body-sm">{radius.value} · {radius.usage}</span>
+                        </div>
+                      </div>
+                    ))
+                  }
+                </div>
+              </div>
+              <div>
+                <GuideSubhead title="Hairlines" />
+                <div class="flex flex-col gap-16">
+                  <div class="flex flex-col gap-12 rounded-8 bg-ink p-24 text-white">
+                    <div class="border-white/25 border-b pb-12 text-body">1px · white/25 on dark</div>
+                    <code class="font-mono text-body-sm text-white/50">border-white/25</code>
+                  </div>
+                  <div class="flex flex-col gap-12 rounded-8 border border-black-01/15 p-24">
+                    <div class="border-black-01/15 border-b pb-12 text-body">1px · black-01/15 on light</div>
+                    <code class={codeClass}>border-black-01/15</code>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <GuideSubhead title="Glass" />
+                <div class="relative isolate flex h-200 items-center justify-center overflow-hidden rounded-8">
+                  <img src="/brand/photo-soldering-closeup.jpg" alt="" width="1000" height="563" class="-z-1 absolute inset-0 size-full object-cover" />
+                  <div class="rounded-4 bg-black-01/25 px-24 py-16 font-label text-label text-white uppercase backdrop-blur-16">Blur 16 · black-01/25</div>
+                </div>
+                <code class:list={[codeClass, "mt-12 block"]}>backdrop-blur-16 bg-black-01/25</code>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="primitives" number="05" title="Primitives" intro="The building blocks the sections compose. Each one is a real component; the code snippet is how to use it.">
+            <div class="flex flex-col gap-64">
+              <div>
+                <GuideSubhead title="Eyebrow" description="8px square marker plus an Azeret Mono label. Blue 02 marker on dark, blue-bright on light." />
+                <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+                  <div class:list={[panel, "bg-ink"]}>
+                    <Eyebrow label="All-in-one" tone="dark" />
+                  </div>
+                  <div class:list={[panel, "border border-black-01/15"]}>
+                    <Eyebrow label="Design & Development" />
+                  </div>
+                </div>
+                <code class:list={[codeClass, "mt-12 block"]}>&lt;Eyebrow label="All-in-one" tone="dark" /&gt;</code>
+              </div>
+
+              <div id="buttons">
+                <GuideSubhead title="Buttons" description="Two variants on the shared Button. Arrow: the primary CTA over dark or photo grounds. Glass: the header's frosted Contact." />
+                <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+                  <div class:list={[panel, "bg-ink"]}>
+                    <img src="/brand/photo-lab-technician.jpg" alt="" width="1024" height="689" class="-z-1 absolute inset-0 size-full object-cover opacity-60" />
+                    <Button variant="arrow" href="#buttons">Learn more</Button>
+                  </div>
+                  <div class:list={[panel, "bg-ink"]}>
+                    <img src="/brand/photo-lab-technician.jpg" alt="" width="1024" height="689" class="-z-1 absolute inset-0 size-full object-cover" />
+                    <Button variant="glass" href="#buttons">Contact</Button>
+                  </div>
+                </div>
+                <div class="mt-12 flex flex-col gap-4">
+                  <code class={codeClass}>&lt;Button variant="arrow" href="…"&gt;Learn more&lt;/Button&gt;</code>
+                  <code class={codeClass}>&lt;Button variant="glass" href="…"&gt;Contact&lt;/Button&gt;</code>
+                </div>
+                <p class="mt-12 max-w-704 text-black-01/50 text-body-sm">Hover states are not in Figma yet: the arrow tile nudges 4px right, the glass fill deepens to black-01/40.</p>
+              </div>
+
+              <div>
+                <GuideSubhead title="Check list" description="Capability rows: 1px black-01/15 top rule, 12px padding, 20px check-circle, Body." />
+                <div class="max-w-560">
+                  <CheckList items={checkItems} />
+                </div>
+                <code class:list={[codeClass, "mt-12 block"]}>&lt;CheckList items={"{[…]}"} /&gt;</code>
+              </div>
+
+              <div>
+                <GuideSubhead title="Navigation link" description="Body Medium in beige-01 over the hero, 36px apart." />
+                <div class:list={[panel, "bg-ink"]}>
+                  <ul class="flex flex-wrap gap-36 font-medium text-beige-01 text-body">
+                    <li>Services</li>
+                    <li>Industries</li>
+                    <li>About</li>
+                    <li>Careers</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div>
+                <GuideSubhead title="Capability column" description="Title in Body LG Medium white, description in Body white/50, 4px apart. Three across with a 92px gap." />
+                <div class="grid grid-cols-1 gap-32 rounded-16 bg-navy-glow p-32 md:grid-cols-3 lg:gap-92">
+                  <div class="flex flex-col gap-4">
+                    <p class="font-medium text-body-lg text-white">Design &amp; Development</p>
+                    <p class="text-body text-white/50">Concept through production-ready design, with FDA-aligned design controls.</p>
+                  </div>
+                  <div class="flex flex-col gap-4">
+                    <p class="font-medium text-body-lg text-white">Manufacturing &amp; Assembly</p>
+                    <p class="text-body text-white/50">Concept through production-ready design, with FDA-aligned design controls.</p>
+                  </div>
+                  <div class="flex flex-col gap-4">
+                    <p class="font-medium text-body-lg text-white">Finishing, Sterilization, Fulfillment</p>
+                    <p class="text-body text-white/50">The post-assembly work that determines whether devices ship on time.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="decoration" number="06" title="Decoration" intro="Quiet, technical ornament: hairline grids, a single square marker, and the blurred molecule mark. No drop shadows, no outlines, no icons for decoration.">
+            <div class="grid grid-cols-1 gap-16 md:grid-cols-3">
+              <article class="overflow-hidden rounded-16 border border-black-01/15 md:col-span-3">
+                <div class="relative isolate aspect-[1440/647] overflow-hidden bg-navy-glow">
+                  <img
+                    src="/brand/logo-mark-blurred.svg"
+                    alt=""
+                    width="550"
+                    height="555"
+                    class="-translate-1/2 absolute top-[54.6%] left-[14%] w-[38%] -skew-x-20 rotate-38 scale-y-94"
+                  />
+                </div>
+                <div class="flex flex-col gap-8 p-16">
+                  <h4 class="font-medium text-body-lg">Blurred logo mark</h4>
+                  <p class="text-body">The AB molecule mark, heavily blurred (filter baked into the SVG), skewed −20°, rotated 38°, bleeding off the left edge of the navy glow. One per section, never over text.</p>
+                  <code class={codeClass}>/brand/logo-mark-blurred.svg</code>
+                </div>
+              </article>
+              <article class="overflow-hidden rounded-16 border border-black-01/15">
+                <div class="relative isolate aspect-[16/10] overflow-hidden bg-gray-02">
+                  <img src="/brand/photo-lab-technician.jpg" alt="" width="1024" height="689" class="-z-1 absolute inset-0 size-full object-cover" />
+                  <div class="-z-1 absolute inset-x-0 bottom-0 h-1/2 bg-hero-fade" />
+                  <div class="absolute inset-x-0 top-0 h-32 border-white/25 border-b" />
+                  <div class="absolute inset-x-0 bottom-16 flex h-80 border-white/25 border-y">
+                    <div class="w-[74%] border-white/25 border-r" />
+                  </div>
+                </div>
+                <div class="flex flex-col gap-8 p-16">
+                  <h4 class="font-medium text-body-lg">Hairline grid</h4>
+                  <p class="text-body">The hero is framed by 1px white/25 rules: under the nav bar, above and below the headline row, and a vertical divider at 1061px that separates headline from CTA.</p>
+                </div>
+              </article>
+              <article class="overflow-hidden rounded-16 border border-black-01/15">
+                <div class="flex aspect-[16/10] items-center justify-center gap-32 bg-white">
+                  <span class="size-8 bg-blue-bright" />
+                  <span class="size-32 bg-blue-bright" />
+                  <span class="size-8 bg-blue-02" />
+                </div>
+                <div class="flex flex-col gap-8 p-16">
+                  <h4 class="font-medium text-body-lg">Square marker</h4>
+                  <p class="text-body">A solid 8×8 square, no radius. It only ever leads an eyebrow label. Shown at 1× and 4×.</p>
+                </div>
+              </article>
+              <article class="overflow-hidden rounded-16 border border-black-01/15">
+                <div class="relative aspect-[16/10] bg-gray-02">
+                  <img src="/brand/photo-lab-technician.jpg" alt="" width="1024" height="689" class="absolute inset-0 size-full object-cover" />
+                  <div class="absolute inset-x-0 bottom-0 h-3/5 bg-hero-fade" />
+                </div>
+                <div class="flex flex-col gap-8 p-16">
+                  <h4 class="font-medium text-body-lg">Photo fade</h4>
+                  <p class="text-body">Photography meeting copy always gets the hero fade (332px tall at desktop) so white text keeps contrast.</p>
+                </div>
+              </article>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="imagery" number="07" title="Imagery & illustration" intro="Real engineers, real benches. Low-key, cool-toned photography with practical light sources and shallow depth of field.">
+            <div class="flex flex-col gap-64">
+              <div>
+                <GuideSubhead title="Logo" description="White wordmark on dark grounds. Header size 153×41." />
+                <div class="flex items-center justify-center rounded-16 bg-ink px-32 py-64">
+                  <img src="/brand/ab-medical-logo-white.png" alt="AB Medical Technologies" width="1024" height="273" class="h-auto w-full max-w-320" />
+                </div>
+                <p class="mt-12 text-black-01/50 text-body-sm">Only a raster export exists so far; ask design for an SVG and a dark-on-light version.</p>
+              </div>
+
+              <div>
+                <GuideSubhead title="Photography" />
+                <div class="grid grid-cols-1 gap-16 md:grid-cols-3">
+                  <figure class="flex flex-col gap-12">
+                    <img src="/brand/photo-lab-technician.jpg" alt="Technician working at a microscope bench" width="1024" height="689" class="aspect-[4/5] w-full rounded-16 bg-black-01/10 object-cover" />
+                    <figcaption class="text-black-01/75 text-body-sm">S1 hero. Dark surround, one pool of light on the work.</figcaption>
+                  </figure>
+                  <figure class="flex flex-col gap-12">
+                    <img src="/brand/photo-engineer-workstation.jpg" alt="Engineer at a workstation" width="1000" height="563" class="aspect-[4/5] w-full rounded-16 bg-black-01/10 object-cover object-right" />
+                    <figcaption class="text-black-01/75 text-body-sm">S4 photo card. 16px radius, cropped tall, subject off-center.</figcaption>
+                  </figure>
+                  <figure class="flex flex-col gap-12">
+                    <img src="/brand/photo-soldering-closeup.jpg" alt="Close-up of soldering under a magnifier" width="1000" height="563" class="aspect-[4/5] w-full rounded-16 bg-black-01/10 object-cover" />
+                    <figcaption class="text-black-01/75 text-body-sm">In the hero frame (behind S1's photo). Blue cast, hands and instruments.</figcaption>
+                  </figure>
+                </div>
+                <ul class="mt-24 grid grid-cols-1 gap-x-32 gap-y-8 text-body md:grid-cols-2">
+                  <li>· People doing precise work: hands, instruments, screens.</li>
+                  <li>· Cool, blue-leaning grade; deep shadows, no flat studio light.</li>
+                  <li>· Photo cards: rounded-16 on a black-01/10 placeholder.</li>
+                  <li>· Text over a photo always sits on bg-hero-fade.</li>
+                </ul>
+                <p class="mt-16 rounded-8 border border-black-01/25 border-dashed p-16 text-black-01/75 text-body-sm">
+                  These are watermarked Adobe Stock previews from the Figma file. License the final images before launch.
+                </p>
+              </div>
+            </div>
+          </GuideSection>
+
+          <GuideSection id="sections" number="08" title="Sections built" intro="Every Figma section adopted so far, with what it draws from the system. Add a card here when a new section lands.">
+            <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+              {
+                BUILT_SECTIONS.map((section) => (
+                  <article class="flex flex-col gap-16 rounded-16 border border-black-01/15 p-24">
+                    <div class="flex items-center justify-between gap-16">
+                      <span class="font-label text-black-01/50 text-label uppercase">{section.ref} · {section.ground}</span>
+                      <a href={figmaNodeUrl(section.nodeId)} target="_blank" rel="noopener noreferrer" class="font-label text-black-01/50 text-body-sm hover:text-black-01">
+                        {section.figmaName} ↗
+                      </a>
+                    </div>
+                    <h3 class="text-heading-4">{section.name}</h3>
+                    <p class="text-black-01/75 text-body">{section.summary}</p>
+                    <div class="flex flex-wrap gap-4">
+                      {section.uses.map((use) => (
+                        <span class={chip}>{use}</span>
+                      ))}
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </GuideSection>
+
+          <GuideSection id="changelog" number="09" title="Changelog">
+            <ol class="flex flex-col">
+              {
+                CHANGELOG.map((entry) => (
+                  <li class="grid grid-cols-1 gap-12 border-black-01/15 border-t py-24 md:grid-cols-[160px_minmax(0,1fr)]">
+                    <div class="flex flex-col gap-4">
+                      <span class="text-heading-4">v{entry.version}</span>
+                      <span class="font-label text-black-01/50 text-label">{entry.date}</span>
+                    </div>
+                    <ul class="flex flex-col gap-8 text-body">
+                      {entry.changes.map((change) => (
+                        <li>{change}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))
+              }
+            </ol>
+          </GuideSection>
+        </div>
+      </div>
+    </div>
+  </main>
+</Web>

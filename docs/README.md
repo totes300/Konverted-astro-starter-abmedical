@@ -30,6 +30,7 @@ Use this path if you are new to the repository:
 - Back up, restore, or copy Sanity datasets -> [Dataset export, import, and migration](./sanity/dataset-migration.md)
 - Seed a new dataset with the bundled starter content -> [Seed dataset](./sanity/seed-dataset.md)
 - Bootstrap a new Sanity project (tokens, CORS, `.env`) -> [Sanity project setup](./sanity/project-setup.md)
+- Look up a design token, or add a new Figma section's styles to the design system -> [Style guide](./style-guide.md)
 - Scaffold a new route/section/block -> [Code Generation (Plop)](./features/code-generation.md)
 - Give the Studio's "add section" menu real pictures -> [Section previews](./features/section-previews.md)
 - Remove a feature you do not need (blog, legal pages, contact form, announcement bar, analytics, a media kind, a section) -> [Trimming features](./features/trimming-features.md)

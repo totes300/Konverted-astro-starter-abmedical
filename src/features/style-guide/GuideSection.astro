@@ -1,0 +1,22 @@
+---
+// One numbered chapter of the style guide: anchor, title, intro, then its content.
+type Props = {
+  id: string;
+  number: string;
+  title: string;
+  intro?: string;
+};
+
+const { id, number, title, intro } = Astro.props;
+---
+
+<section id={id} class="scroll-mt-24 border-black-01/15 border-t pt-32 pb-96">
+  <header class="mb-48 flex flex-col gap-16 md:flex-row md:items-baseline md:gap-32">
+    <span class="font-label text-black-01/50 text-label">{number}</span>
+    <div class="flex max-w-704 flex-col gap-12">
+      <h2 class="text-heading-2">{title}</h2>
+      {intro && <p class="text-black-01/75 text-body-lg">{intro}</p>}
+    </div>
+  </header>
+  <slot />
+</section>

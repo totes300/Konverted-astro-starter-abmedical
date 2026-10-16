@@ -1,0 +1,17 @@
+/* AB Medical decoration utilities: the recurring brand backgrounds from the Figma file, documented at /style-guide. */
+
+/* Hero photo fade: ink from the bottom up to 41%, dissolving into transparent navy so the headline reads. */
+@utility bg-hero-fade {
+  background-image: linear-gradient(to top, var(--color-ink) 41.284%, --alpha(var(--color-navy-blue) / 0%));
+}
+
+/* The dark section ground: a wide, low navy glow along the bottom, fading up into ink (Figma's skewed radial, flattened). */
+@utility bg-navy-glow {
+  background-color: var(--color-ink);
+  background-image: radial-gradient(
+    ellipse 250% 61% at 0% 82%,
+    var(--color-navy-800) 0%,
+    var(--color-navy-900) 28.3%,
+    var(--color-ink) 56.6%
+  );
+}

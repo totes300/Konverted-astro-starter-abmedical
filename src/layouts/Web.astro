@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import geistSansUrl from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import geistMonoUrl from "@fontsource-variable/geist-mono/files/geist-mono-latin-wght-normal.woff2?url";
 import JsonLd from "~/components/JsonLd.astro";
 import Lenis from "~/components/Lenis/Lenis.astro";
@@ -110,7 +109,8 @@ const isDraft = isDraftMode(Astro);
 
     <link rel="preconnect" href="https://cdn.sanity.io" />
 
-    <link rel="preload" href={geistSansUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/pp-neue-montreal/PPNeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/pp-neue-montreal/PPNeueMontreal-Medium.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={geistMonoUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/geist-pixel/GeistPixel-Square.woff2" as="font" type="font/woff2" crossorigin />
 

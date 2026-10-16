@@ -3,13 +3,15 @@
 @import "./colors.css";
 @import "./typography.css";
 @import "./animations.css";
+@import "./decorations.css";
 @import "./global.css";
 @import "./sanity-rich-text.css";
 
 @theme {
   /* Content width bounds (px); also reference values for responsive calc. */
   --layout-min-w: 375;
-  --layout-max-w: 1600;
+  /* The Figma desktop frame, so the fluid type scales land on their exact design size there. */
+  --layout-max-w: 1440;
 
   /* Reset default TW breakpoints. */
   --breakpoint-\*: initial;
@@ -33,6 +35,9 @@
   --radius-12: --spacing(12);
   --radius-16: --spacing(16);
   --radius-full: 9999px;
+
+  /* The frosted glass behind the header's Contact button. */
+  --blur-16: --spacing(16);
 }
 
 /* The shell's measurements: the header's height, plus the content column's width and side margin.
@@ -51,14 +56,14 @@
 
     /* The content column's width, as `max-w-(--page-width)`. Distinct from `--layout-max-w`, which
        is only the upper bound the fluid type scales interpolate to. */
-    --page-width: --spacing(1200);
+    --page-width: --spacing(1360);
 
     /* The page's side margin, as `px-(--page-gutter)`. Every page-level container reads it, so the
        distance from the viewport to the content is one value rather than a pair per container. */
     --page-gutter: --spacing(16);
 
     @variant lg {
-      --page-gutter: --spacing(48);
+      --page-gutter: --spacing(40);
     }
   }
 }

@@ -11,6 +11,19 @@
   --color-black: #000;
   --color-white: #fff;
 
+  /* AB Medical palette, named after the Figma variables (Mallard file). Figma's alpha variants
+     (`white-75`, `black-01-15`, ...) are opacity modifiers here: `text-white/75`, `border-black-01/15`. */
+  --color-black-01: #1d1d1d;
+  --color-ink: #090a13;
+  --color-navy-blue: #07141e;
+  --color-navy-800: #17244c;
+  --color-navy-900: #10172f;
+  --color-beige-01: #fdf8f2;
+  --color-gray-02: #dcdad7;
+  --color-gray-text: #737373;
+  --color-blue-02: #33519f;
+  --color-blue-bright: #547ade;
+
   /* Semantic, so deliberately not in the brand ramp below: content picking "danger" would be picking
      a meaning rather than a colour, and the value is free to change with the design system. */
   --color-danger: #ff4a3d;

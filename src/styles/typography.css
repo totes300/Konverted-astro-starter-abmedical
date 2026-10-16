@@ -3,7 +3,8 @@
    * Geist faces are declared in fonts.css, which sets the `--font-geist-*` vars.
    * Each `--font-pixel-*` becomes `font-pixel-square`, `font-pixel-line`, etc.
    */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-sans: var(--font-pp-neue-montreal), ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-label: var(--font-azeret-mono), ui-monospace, monospace;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-pixel-square: var(--font-geist-pixel-square), ui-monospace, monospace;
   --font-pixel-grid: var(--font-geist-pixel-grid), ui-monospace, monospace;
@@ -67,4 +68,82 @@
   --text-headline-20--font-weight: 400;
   --text-headline-20--line-height: 1.1;
   --text-headline-20--letter-spacing: normal;
+
+  /*
+    AB Medical scale (Figma "Mallard" text styles). The max is the Figma desktop value, reached at the
+    1440px frame width (`--layout-max-w`); the mobile min is ours, Figma has no mobile frames yet.
+    Rendered and documented at /style-guide.
+  */
+
+  /* 40px - 72px, heading-style-display */
+  --text-display: clamp(--spacing(40), --spacing(40) + (72 - 40) * var(--fluid-slope), --spacing(72));
+  --text-display--font-weight: 400;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: normal;
+
+  /* 36px - 56px, heading-style-h1 */
+  --text-heading-1: clamp(--spacing(36), --spacing(36) + (56 - 36) * var(--fluid-slope), --spacing(56));
+  --text-heading-1--font-weight: 400;
+  --text-heading-1--line-height: 1.1;
+  --text-heading-1--letter-spacing: normal;
+
+  /* 32px - 48px, heading-style-h2 */
+  --text-heading-2: clamp(--spacing(32), --spacing(32) + (48 - 32) * var(--fluid-slope), --spacing(48));
+  --text-heading-2--font-weight: 400;
+  --text-heading-2--line-height: 1.2;
+  --text-heading-2--letter-spacing: normal;
+
+  /* 28px - 40px, heading-style-h3 */
+  --text-heading-3: clamp(--spacing(28), --spacing(28) + (40 - 28) * var(--fluid-slope), --spacing(40));
+  --text-heading-3--font-weight: 400;
+  --text-heading-3--line-height: 1.2;
+  --text-heading-3--letter-spacing: normal;
+
+  /* 24px - 32px, heading-style-h4 */
+  --text-heading-4: clamp(--spacing(24), --spacing(24) + (32 - 24) * var(--fluid-slope), --spacing(32));
+  --text-heading-4--font-weight: 400;
+  --text-heading-4--line-height: 1.3;
+  --text-heading-4--letter-spacing: normal;
+
+  /* 18px - 22px, text-size-xlarge */
+  --text-body-xl: clamp(--spacing(18), --spacing(18) + (22 - 18) * var(--fluid-slope), --spacing(22));
+  --text-body-xl--font-weight: 400;
+  --text-body-xl--line-height: 1.4;
+  --text-body-xl--letter-spacing: normal;
+
+  /* 18px - 20px, text-size-large */
+  --text-body-lg: clamp(--spacing(18), --spacing(18) + (20 - 18) * var(--fluid-slope), --spacing(20));
+  --text-body-lg--font-weight: 400;
+  --text-body-lg--line-height: 1.4;
+  --text-body-lg--letter-spacing: normal;
+
+  /* 16px, text-size-regular */
+  --text-body: --spacing(16);
+  --text-body--font-weight: 400;
+  --text-body--line-height: 1.5;
+  --text-body--letter-spacing: normal;
+
+  /* 12px, text-size-tiny */
+  --text-body-sm: --spacing(12);
+  --text-body-sm--font-weight: 400;
+  --text-body-sm--line-height: 1.5;
+  --text-body-sm--letter-spacing: normal;
+
+  /* 12px - 14px, caption: the uppercase Azeret Mono eyebrow (pair with `font-label uppercase`). */
+  --text-label: clamp(--spacing(12), --spacing(12) + (14 - 12) * var(--fluid-slope), --spacing(14));
+  --text-label--font-weight: 400;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.08em;
+
+  /* 14px, button-text-small (pair with `uppercase`). */
+  --text-button: --spacing(14);
+  --text-button--font-weight: 400;
+  --text-button--line-height: 1;
+  --text-button--letter-spacing: 0.08em;
+
+  /* 12px, button-text-tiny (pair with `uppercase`). */
+  --text-button-sm: --spacing(12);
+  --text-button-sm--font-weight: 400;
+  --text-button-sm--line-height: 1;
+  --text-button-sm--letter-spacing: 0.08em;
 }

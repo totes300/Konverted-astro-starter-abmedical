@@ -55,9 +55,10 @@ Apply when styling any `.astro` or component, adding utilities, editing `src/sty
 ## Reference Files
 
 - `src/styles/tailwind.css`: entry point (`@import` chain), `@theme` (layout bounds, breakpoints, spacing, radii), the base-layer shell measurements (`--header-height`, `--page-width`, `--page-gutter`), the `hover` custom variant, and the `scrollbar-invisible` utility.
-- `src/styles/colors.css`: the palette, deliberately minimal (black, white, the semantic `danger`, plus `current`/`transparent`/`inherit`; Tailwind's default palette is reset), and the `static` brand ramp (`--color-brand-*`) that content colours resolve to (`sanity/colors.ts` lists it by name).
-- `src/styles/typography.css`: font tokens (`sans`, `mono`, five `pixel-*` faces) and the fluid type scales (`caption`, `cta`, `body-10`, `body-20`, `headline-10`, `headline-20`) with weight/line-height/letter-spacing.
-- `src/styles/fonts.css`: Geist variable faces via `@fontsource-variable`, plus `@font-face` for the Geist Pixel faces self-hosted from `public/fonts/geist-pixel/`.
+- `src/styles/colors.css`: the palette (black, white, the semantic `danger`, plus `current`/`transparent`/`inherit`; Tailwind's default palette is reset), the AB Medical colours named after the Figma variables (`black-01`, `ink`, `navy-*`, `beige-01`, `gray-02`, `blue-02`, `blue-bright`; Figma alpha variables are opacity modifiers), and the `static` brand ramp (`--color-brand-*`) that content colours resolve to (`sanity/colors.ts` lists it by name).
+- `src/styles/decorations.css`: brand decoration utilities (`bg-hero-fade`, `bg-navy-glow`). All AB Medical tokens are documented at `/style-guide` (`docs/style-guide.md`), which every new Figma section updates.
+- `src/styles/typography.css`: font tokens (`sans` = PP Neue Montreal, `label` = Azeret Mono, `mono`, five `pixel-*` faces) and the fluid type scales: the AB Medical scale from Figma (`display`, `heading-1`-`heading-4`, `body-xl`, `body-lg`, `body`, `body-sm`, `label`, `button`, `button-sm`) and the starter's (`caption`, `cta`, `body-10`, `body-20`, `headline-10`, `headline-20`), each with weight/line-height/letter-spacing.
+- `src/styles/fonts.css`: PP Neue Montreal (400, 500) self-hosted from `public/fonts/pp-neue-montreal/`, Azeret Mono 400 via `@fontsource`, Geist variable faces via `@fontsource-variable`, plus `@font-face` for the Geist Pixel faces self-hosted from `public/fonts/geist-pixel/`.
 - `src/styles/global.css`, `animations.css`: base layer (the locked `html`/`body`, focus ring, selection) and keyframes (`fade-in`, `fade-out`).
 - `src/styles/sanity-rich-text.css`: element styles for portable-text output.
 - `src/layouts/Web.astro`: the single Tailwind entry point (`import "../styles/tailwind.css"`).
@@ -70,7 +71,7 @@ Apply when styling any `.astro` or component, adding utilities, editing `src/sty
 - Configuration is CSS, not a JS config: `tailwind.css` does `@import "tailwindcss"` then chains `fonts`, `colors`, `typography`, `animations`, `global`, `sanity-rich-text`. Tokens are declared in `@theme` blocks.
 - Colors: the default Tailwind palette is reset (`--color-*: initial`) down to `black`, `white`, `danger`, `current`, `transparent`, `inherit`, `initial`, `unset`, plus the brand ramp in its own `@theme static` block, the only tokens a content colour can resolve to. The site is white on black. Adding a color means adding a token in `colors.css`, not an arbitrary hex at the use site.
 - Spacing base is `1px` (`--spacing: 0.0625rem`), so the spacing scale counts in pixels: `mb-16` is 16px, `inset-24` is 24px, `pt-88` is 88px. NEVER write px arbitrary values (`mb-[16px]`, `gap-[8px]`, `inset-[24px]`, `px-[40px]`); drop the brackets and unit instead (`mb-16`, `gap-8`, `inset-24`, `px-40`). This applies to every spacing-driven utility: margin, padding, gap, inset/top/right/bottom/left, width, height, size, space, translate. Border-radius has no 1px scale, so use the `--radius-*` tokens (`rounded-4/8/12/16/full`), e.g. `rounded-8`, never `rounded-[6px]` or `rounded-6`. Breakpoints are in `rem` so they respect the user's font size.
-- Fonts: `--font-sans` and `--font-mono` are Geist, imported from `@fontsource-variable` and resolved by Vite. The five `--font-pixel-*` faces (square, grid, circle, triangle, line) are self-hosted from `public/fonts/geist-pixel/` with `font-display: swap`.
+- Fonts: `--font-sans` is PP Neue Montreal (licensed, self-hosted woff2, preloaded in `Web.astro`), `--font-label` is Azeret Mono (`@fontsource/azeret-mono`), `--font-mono` is Geist Mono (`@fontsource-variable`). The five `--font-pixel-*` faces (square, grid, circle, triangle, line) are self-hosted from `public/fonts/geist-pixel/` with `font-display: swap`.
 
 ### Shell measurements
 
@@ -82,7 +83,7 @@ Apply when styling any `.astro` or component, adding utilities, editing `src/sty
 
 ### Fluid typography
 
-- Type scales are `clamp()`-based, fluid between the `--layout-min-w` (375) and `--layout-max-w` (1600) bounds, each with companion weight, line-height, and letter-spacing tokens. Tailwind's default sizes are reset, so `text-sm`/`text-lg` do not exist: use `text-caption`, `text-cta`, `text-body-10`, `text-body-20`, `text-headline-10`, `text-headline-20`.
+- Type scales are `clamp()`-based, fluid between the `--layout-min-w` (375) and `--layout-max-w` (1440, the Figma frame) bounds, each with companion weight, line-height, and letter-spacing tokens. Tailwind's default sizes are reset, so `text-sm`/`text-lg` do not exist: use the AB Medical scale (`text-display`, `text-heading-1`, `text-body`, `text-label`, ...; see `/style-guide`) for new work, or the starter's `text-caption`, `text-cta`, `text-body-10`, `text-body-20`, `text-headline-10`, `text-headline-20`.
 
 ### The loading model
 
